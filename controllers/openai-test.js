@@ -2,7 +2,6 @@ const OpenAI = require("openai");
 require('dotenv').config();
 
 
-
 const openai = new OpenAI();
 
 async function main() {
@@ -11,7 +10,10 @@ async function main() {
     model: "gpt-3.5-turbo",
   });
 
-  console.log(completion.choices[0]);
+  return completion.choices[0];
 }
 
-main();
+module.exports = {
+    main
+};
+

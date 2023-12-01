@@ -27,7 +27,6 @@ const port = process.env.PORT || 3001;
 app.use('/api/users', require('./routes/api/users'));
 
 const openAIRouter = require('./routes/openAI')
-
 app.use('/openAI', openAIRouter)
 
 // The following "catch all" route (note the *) is necessary
