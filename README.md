@@ -1,3 +1,2 @@
-# MERN-Stack Infrastructure
+# RE-WORD
 
-Clone this repo to provide the starter code for a comprehensive MERN-Stack project including token-based authentication.
