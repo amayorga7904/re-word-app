@@ -1,4 +1,5 @@
 const OpenAI = require("openai")
+const OpenAIModel = require('../models/openAI')
 
 
 //creates OpenAI client to make make requests to OpenAI GPT-3 service
@@ -29,6 +30,11 @@ async function main(req, res) {
         console.log('Completion:', completion);
         //sends first JSON response to client from OpenAI
         if (completion && completion.choices && completion.choices.length > 0) {
+            const responseContent = completion.choices[0].message.content;
+
+            // Save to MongoDB
+            const openAIRecord = new OpenAIModel({ prompt, response: responseContent });
+            await openAIRecord.save();
             // sends first JSON response to the client from OpenAI
             res.json(completion.choices[0]);
         } else {
@@ -42,8 +48,19 @@ async function main(req, res) {
     }
 }
 
+async function history(req, res) {
+    try {
+        const prompts = await OpenAIModel.find().sort({ timestamp: -1 });
+        res.status(200).json(prompts);
+    } catch (error) {
+        console.error('Error getting prompts:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
 module.exports = {
-    main
+    main, 
+    history
 }
 
 
