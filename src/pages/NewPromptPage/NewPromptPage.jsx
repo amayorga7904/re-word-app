@@ -55,6 +55,7 @@ export default function NewPromptPage() {
       {/* invokes handleSumbit function */}
       <form onSubmit={handleSubmit}>
         <input
+          className='text-area'
           type="text"
           placeholder='Enter Text You Wish to Improve'
           //sets prompt state variable
