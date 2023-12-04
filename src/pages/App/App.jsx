@@ -17,7 +17,7 @@ export default function App() {
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
-              <Route path="/orders/new" element={<NewPromptPage />} />
+              <Route path="/api/openAi" element={<NewPromptPage />} />
               <Route path="/orders" element={<PromptHistoryPage />} />
             </Routes>
           </>

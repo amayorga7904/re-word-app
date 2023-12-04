@@ -11,7 +11,7 @@ export default function NavBar({ user, setUser }) {
     <nav>
       <Link to="/orders">Prompt History</Link>
       &nbsp; | &nbsp;
-      <Link to="/orders/new">New Prompt</Link>
+      <Link to="/api/openAi">New Prompt</Link>
       &nbsp;&nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
