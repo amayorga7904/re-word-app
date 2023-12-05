@@ -67,7 +67,7 @@ export default function NewCodePage() {
             </Col>
               <Col sm={8}>
                 <div>
-                  <h3>Be Able to Explain Code like a Pro!</h3>
+                  <h3>Explain Code like a Pro!</h3>
                   {/* if truthy, displays value. Else displays... */}
                   <p>{loadingArea ? '…. Loading' : explanationContent || 'ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ'}</p>
                 </div>

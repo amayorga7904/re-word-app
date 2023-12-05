@@ -1,14 +1,51 @@
 import { checkToken } from '../../utilities/users-service';
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
-import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
+import { Container, CardGroup, Card, Row, Col } from "react-bootstrap";
+import "./styles.css";
 
 const HISTORY_API_URL = 'http://localhost:3000/api/openAi/history'
+const MAX_POSSIBLE_HEIGHT = 10000;
 
+const styles = {
+  container: {
+    width: 300,
+    margin: "0 auto"
+  },
+  card: {
+    backgroundColor: "#B7E0F2",
+    borderRadius: 55,
+    padding: "3rem"
+  }
+};
+
+const ExpendableText = ({ maxHeight, children }) => {
+  const ref = useRef();
+  const [shouldShowExpand, setShouldShowExpand] = useState(false);
+  const [expanded, setExpanded] = useState(true);
+
+  useEffect(() => {
+    if (ref.current.scrollHeight > maxHeight) {
+      setShouldShowExpand(true);
+      setExpanded(false);
+    }
+  }, [maxHeight]);
+
+  return (
+    <Card.Text as="h4" style={styles.cardText} ref={ref}>
+      <div
+        class="inner"
+        style={{ maxHeight: expanded ? MAX_POSSIBLE_HEIGHT : maxHeight }}
+      >
+        {children}
+      </div>
+      {shouldShowExpand && (
+        <button onClick={() => setExpanded(!expanded)}>Expand</button>
+      )}
+    </Card.Text>
+  );
+};
 export default function PromptHistoryPage() {
   const [prompts, setPrompts] = useState([]);
 
@@ -51,10 +88,8 @@ export default function PromptHistoryPage() {
     }
   };
 
-
   return (
-    <div>
-      <Container>
+    <Container>
       <Row>
         <Col>
           <Button onClick={getHistory}>
@@ -66,20 +101,36 @@ export default function PromptHistoryPage() {
           <Button onClick={handleCheckToken}>Check Login</Button>
         </Col>
       </Row>
+      <CardGroup>
+        <Card>
+          <Row>
+            <Col>
+              <h1>Prompt History</h1>
+              <ul>
+                {prompts.map((prompt) => (
+                  <Card.Body>
+                    <li key={prompt._id}>
+                      <Card.Title>
+                        <h3>Your Title</h3>
+                      </Card.Title>
+                      <ExpendableText maxHeight={95}>
+                        <strong>Prompt:</strong> {prompt.prompt}<br />
+                      </ExpendableText>
+                      <ExpendableText maxHeight={95}>
+                        <strong>Response:</strong> {prompt.response}<br />
+                      </ExpendableText>
+                      {/* emphasize */}
+                      <em>Timestamp: {new Date(prompt.timestamp).toLocaleString()}</em>
+                      <p>________________________</p>
+                    </li>
+                  </Card.Body>
+                ))}
+              </ul>
+            </Col>
+          </Row>
+        </Card>
+      </CardGroup>
     </Container>
-      <h1>Prompt History</h1>
-      <ul>
-        {prompts.map((prompt) => (
-          <li key={prompt._id}>
-            <strong>Prompt:</strong> {prompt.prompt}<br />
-            <strong>Response:</strong> {prompt.response}<br />
-            {/* emphasize */}
-            <em>Timestamp: {new Date(prompt.timestamp).toLocaleString()}</em>
-            <p>________________________</p>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
 
