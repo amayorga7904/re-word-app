@@ -35,7 +35,7 @@ const ExpendableText = ({ maxHeight, children }) => {
   return (
     <Card.Text as="h4" style={styles.cardText} ref={ref}>
       <div
-        class="inner"
+        className="inner"
         style={{ maxHeight: expanded ? MAX_POSSIBLE_HEIGHT : maxHeight }}
       >
         {children}
@@ -108,8 +108,8 @@ export default function PromptHistoryPage() {
               <h1>Prompt History</h1>
               <ul>
                 {prompts.map((prompt) => (
-                  <Card.Body>
-                    <li key={prompt._id}>
+                  <Card.Body key={prompt._id}>
+                    <li>
                       <Card.Title>
                         <h3>Your Title</h3>
                       </Card.Title>
