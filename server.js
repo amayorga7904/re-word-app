@@ -29,6 +29,7 @@ const port = process.env.PORT || 3001
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'))
 
+
 const openAIRouter = require('./routes/openAI')
 app.use('/api/openAi', openAIRouter)
 

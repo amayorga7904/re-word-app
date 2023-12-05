@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import axios from "axios";
 import { useState } from 'react';
 
-const HISTORY_API_URL = '/api/openAi/history'
+const HISTORY_API_URL = 'http://localhost:3000/api/openAi/history'
 
 export default function PromptHistoryPage() {
   const [prompts, setPrompts] = useState([]);
@@ -13,7 +13,12 @@ export default function PromptHistoryPage() {
     const fetchPrompts = async () => {
       try {
         const response = await axios.get(HISTORY_API_URL);
+        console.log(response)
         setPrompts(response.data);
+       setTimeout(() => {
+        console.log('alex is awesome', prompts)
+       }, 2000)
+
       } catch (error) {
         console.error('Error fetching prompts:', error);
       }
@@ -22,12 +27,27 @@ export default function PromptHistoryPage() {
     fetchPrompts();
   }, []);
 
-  
+  console.log(prompts)
   async function handleCheckToken() {
     const expDate = await checkToken();
     console.log(expDate);
   }
   
+  const getHistory = async () => {
+    try {
+      const response = await axios.get(HISTORY_API_URL);
+      console.log(response)
+      setPrompts(response.data);
+     setTimeout(() => {
+      console.log('alex is awesome', prompts)
+     }, 2000)
+
+    } catch (error) {
+      console.error('Error fetching prompts:', error);
+    }
+  };
+
+
   return (
     <div>
       <h1>PromptHistoryPage</h1>
@@ -38,9 +58,12 @@ export default function PromptHistoryPage() {
             <strong>Response:</strong> {prompt.response}<br />
             {/* emphasize */}
             <em>Timestamp: {new Date(prompt.timestamp).toLocaleString()}</em>
+            <p>________________________</p>
           </li>
         ))}
       </ul>
+      <button onClick={getHistory}>
+        get history</button>
       <button onClick={handleCheckToken}>Check When My Login Expires</button>
     </div>
   );

@@ -14,11 +14,12 @@ export default function App() {
     <main className="App">
       { user ?
           <>
+            <h1>WORD-IQ</h1>
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
               <Route path="/api/openAi" element={<NewPromptPage />} />
-              <Route path="/orders" element={<PromptHistoryPage />} />
+              <Route path="/api/openAi/history" element={<PromptHistoryPage />} />
             </Routes>
           </>
           :

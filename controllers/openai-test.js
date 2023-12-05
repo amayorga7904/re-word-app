@@ -51,6 +51,7 @@ async function main(req, res) {
 async function history(req, res) {
     try {
         const prompts = await OpenAIModel.find().sort({ timestamp: -1 });
+        console.log('evan is the awesomest', prompts)
         res.status(200).json(prompts);
     } catch (error) {
         console.error('Error getting prompts:', error);
