@@ -9,8 +9,6 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link to="/api/openAi/history">Prompt History</Link>
-      &nbsp; | &nbsp;
       <Link to="/api/openAi">New Prompt</Link>
       &nbsp; | &nbsp;
       <Link to="/api/codes/history">Code History</Link>

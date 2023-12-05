@@ -3,7 +3,6 @@ import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import { Container, CardGroup, Card, Row, Col } from "react-bootstrap";
-import "./styles.css";
 import { getUser } from '../../utilities/users-service';
 import { getToken } from '../../utilities/users-service';
 
@@ -108,38 +107,38 @@ export default function PromptHistoryPage() {
         </Col>
       </Row>
       <CardGroup>
-  <Card>
-    <Row>
-      <Col>
-        <h1>Prompt History</h1>
-        {Array.isArray(prompts) && prompts.length > 0 ? (
-          <ul>
-            {prompts.map((prompt) => (
-              <Card.Body key={prompt._id}>
-                <li>
-                  <Card.Title>
-                    <h3>Your Title</h3>
-                  </Card.Title>
-                  <ExpendableText maxHeight={95}>
-                    <strong>Prompt:</strong> {prompt.prompt}<br />
-                  </ExpendableText>
-                  <ExpendableText maxHeight={95}>
-                    <strong>Response:</strong> {prompt.response}<br />
-                  </ExpendableText>
-                  {/* emphasize */}
-                  <em>Timestamp: {new Date(prompt.timestamp).toLocaleString()}</em>
-                  <p>________________________</p>
-                </li>
-              </Card.Body>
-            ))}
-          </ul>
-        ) : (
-          <p>No prompts available.</p>
-        )}
-      </Col>
-    </Row>
-  </Card>
-</CardGroup>
+        <Card>
+          <Row>
+            <Col>
+              <h1>Prompt History</h1>
+              {Array.isArray(prompts) && prompts.length > 0 ? (
+                <ul>
+                  {prompts.map((prompt) => (
+                    <Card.Body key={prompt._id}>
+                      <li>
+                        <Card.Title>
+                          <h3>Your Title</h3>
+                        </Card.Title>
+                        <ExpendableText maxHeight={95}>
+                          <strong>Prompt:</strong> {prompt.prompt}<br />
+                        </ExpendableText>
+                        <ExpendableText maxHeight={95}>
+                          <strong>Response:</strong> {prompt.response}<br />
+                        </ExpendableText>
+                        {/* emphasize */}
+                        <em>Timestamp: {new Date(prompt.timestamp).toLocaleString()}</em>
+                        <p>________________________</p>
+                      </li>
+                    </Card.Body>
+                  ))}
+                </ul>
+              ) : (
+                <p>Your Prompts will be Seen Here</p>
+              )}
+            </Col>
+          </Row>
+        </Card>
+      </CardGroup>
     </Container>
   );
 }
