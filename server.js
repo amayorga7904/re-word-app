@@ -33,6 +33,9 @@ app.use('/api/users', require('./routes/api/users'))
 const openAIRouter = require('./routes/openAI')
 app.use('/api/openAi', openAIRouter)
 
+const codesRouter = require('./routes/codes')
+app.use('/api/codes', codesRouter)
+
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX/API requests
 app.get('/*', function(req, res) {

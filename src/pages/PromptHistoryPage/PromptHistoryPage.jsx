@@ -2,6 +2,10 @@ import { checkToken } from '../../utilities/users-service';
 import React, { useEffect } from 'react';
 import axios from "axios";
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 const HISTORY_API_URL = 'http://localhost:3000/api/openAi/history'
 
@@ -50,7 +54,20 @@ export default function PromptHistoryPage() {
 
   return (
     <div>
-      <h1>PromptHistoryPage</h1>
+      <Container>
+      <Row>
+        <Col>
+          <Button onClick={getHistory}>
+            get history</Button>
+        </Col>
+        <br />
+        <br />
+        <Col>
+          <Button onClick={handleCheckToken}>Check Login</Button>
+        </Col>
+      </Row>
+    </Container>
+      <h1>Prompt History</h1>
       <ul>
         {prompts.map((prompt) => (
           <li key={prompt._id}>
@@ -62,9 +79,6 @@ export default function PromptHistoryPage() {
           </li>
         ))}
       </ul>
-      <button onClick={getHistory}>
-        get history</button>
-      <button onClick={handleCheckToken}>Check When My Login Expires</button>
     </div>
   );
 }

@@ -1,6 +1,11 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { useOpenAI } from "../PromptHistoryPage/OpenAIAPI"
+import PromptHistoryPage from "../PromptHistoryPage/PromptHistoryPage"
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 //endpoint for OpenAI API chat completions
 // const BASE_URL = 'https://api.openai.com/v1/chat/completions'
@@ -56,24 +61,35 @@ export default function NewPromptPage() {
     }
 
   return (
-    <div>
-        <div>
-          <h3>Sound Smarter with the Click of a Button</h3>
-          {/* if truthy, displays value. Else displays... */}
-          <p>{loading ? '███████▒▒▒ 70%' : responseContent || '( ⌐▨_▨)'}</p>
-        </div>
-      {/* invokes handleSumbit function */}
-      <form onSubmit={handleSubmit}>
-        <input
-          className='text-area'
-          type="text"
-          placeholder='Enter Text You Wish to Improve'
-          //sets prompt state variable
-          value={prompt}
-          onChange={handlePrompt}
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <Container>
+        <Row>
+        <Col sm={true}>
+          <PromptHistoryPage />
+        </Col>
+          <Col sm={8}>
+            <div>
+              <h3>Sound Smarter with the Click of a Button</h3>
+              {/* if truthy, displays value. Else displays... */}
+              <p>{loading ? '███████▒▒▒ 70%' : responseContent || '( ⌐▨_▨)'}</p>
+            </div>
+          {/* invokes handleSumbit function */}
+          <form onSubmit={handleSubmit}>
+            <textarea
+              className='text-area'
+              placeholder='Enter Text You Wish to Improve'
+              //sets prompt state variable
+              value={prompt}
+              onChange={handlePrompt}
+            />
+            <Col>
+              <Button variant="primary"
+              type="submit">Submit</Button>
+            </Col>
+            <br />
+            <br />
+          </form>
+        </Col>
+      </Row>
+    </Container>
   )
 }

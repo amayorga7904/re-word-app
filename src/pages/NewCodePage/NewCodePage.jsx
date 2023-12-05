@@ -1,0 +1,94 @@
+import React, { useState } from "react"
+import axios from "axios"
+import { useCodeOpenAI } from "../CodeHistory/CodeAIAPI" 
+import CodeHistory from "../CodeHistory/CodeHistory"
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+
+
+const CODE_BASE_URL = 'http://localhost:3000/api/codes'
+
+export default function NewCodePage() {
+    const { addReply } = useCodeOpenAI()
+    //used to update the value of code
+    const [code, setCode] = useState('')
+    //updates stateContent based on reply recieved from backend
+    const [explanationContent, setExplanationContent] = useState('')
+    const [loadingArea, setLoadingArea] = useState(false);
+    //prevents page from refreshing
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      setLoadingArea(true);
+      
+    
+      try {
+        //async POST request to endpoint with code sent to req.body
+        const reply = await axios.post(CODE_BASE_URL, { code });  
+        console.log('API Response:', reply);    
+        //explanationContent is set to the first value of the API reply
+        if (reply.data.message && reply.data.message.content) {
+          setExplanationContent(reply.data.message.content);
+          addReply(reply.data.message.content);
+  
+        } else {
+          console.error('Error: Unexpected reply structure');
+          setExplanationContent('Error occurred');
+        }
+              // if (reply.data.choices && reply.data.choices.length > 0) {
+              //   setExplanationContent(reply.data.choices[0].message.content);
+              // } else {
+              //   // Handle the case when choices array is empty or undefined
+              //   console.error('Error: Unexpected reply structure');
+              //   setExplanationContent('Error occurred');
+              // }
+        //error handling
+      } catch (error) {
+        console.error('Error:', error)
+        setExplanationContent('Error occurred')
+      } finally {
+        setLoadingArea(false)
+      }
+      //sets code state variable to an empty string
+      setCode('')
+    }
+      //sets current code state to the new value entered by user
+      const handleCode = (e) => {
+        setCode(e.target.value)
+      }
+
+      return (
+        <Container>
+            <Row>
+            <Col sm={true}>
+              <CodeHistory />
+            </Col>
+              <Col sm={8}>
+                <div>
+                  <h3>Be Able to Explain Code like a Pro!</h3>
+                  {/* if truthy, displays value. Else displays... */}
+                  <p>{loadingArea ? '███████▒▒▒ 70%' : explanationContent || '( ⌐▨_▨)'}</p>
+                </div>
+              {/* invokes handleSumbit function */}
+              <form onSubmit={handleSubmit}>
+                <textarea
+                  className='text-area'
+                  placeholder='Enter Code Here'
+                  //sets code state variable
+                  value={code}
+                  onChange={handleCode}
+                />
+                <Col>
+                  <Button variant="primary"
+                  type="submit">Submit</Button>
+                </Col>
+                <br />
+                <br />
+              </form>
+            </Col>
+          </Row>
+        </Container>
+      )
+    }
+    

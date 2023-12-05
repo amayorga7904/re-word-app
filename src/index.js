@@ -4,14 +4,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './pages/App/App';
 import { OpenAIProvider } from './pages/PromptHistoryPage/OpenAIAPI'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { CodeOpenAIProvider } from './pages/CodeHistory/CodeAIAPI';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <OpenAIProvider>
-        <App />
-      </OpenAIProvider>
+      <CodeOpenAIProvider>
+        <OpenAIProvider>
+          <App />
+        </OpenAIProvider>
+      </CodeOpenAIProvider>
     </Router>
   </React.StrictMode>
 );

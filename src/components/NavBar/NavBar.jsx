@@ -13,6 +13,10 @@ export default function NavBar({ user, setUser }) {
       &nbsp; | &nbsp;
       <Link to="/api/openAi">New Prompt</Link>
       &nbsp;&nbsp;
+      <Link to="/api/codes/history">Code History</Link>
+      &nbsp; | &nbsp;
+      <Link to="/api/codes">New Code</Link>
+      &nbsp;&nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
     </nav>
