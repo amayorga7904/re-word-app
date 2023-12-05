@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import './NewCodePage.css'
+import { getToken } from "../../utilities/users-service";
 
 
 const CODE_BASE_URL = 'http://localhost:3000/api/codes'
@@ -22,11 +23,15 @@ export default function NewCodePage() {
     const handleSubmit = async (e) => {
       e.preventDefault()
       setLoadingArea(true);
-      
-    
       try {
-        //async POST request to endpoint with code sent to req.body
-        const reply = await axios.post(CODE_BASE_URL, { code });  
+        const codeToken = await getToken();
+        //async POST request to endpoint with prompt sent to req.body
+        const reply = await axios.post(CODE_BASE_URL, { code }, {
+          headers: {
+            Authorization: `Bearer ${codeToken}`
+          }
+        });  
+        //async POST request to endpoint with code sent to req.body  
         console.log('API Response:', reply);    
         //explanationContent is set to the first value of the API reply
         if (reply.data.message && reply.data.message.content) {

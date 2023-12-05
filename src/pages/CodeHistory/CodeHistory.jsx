@@ -1,12 +1,50 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
+import { getUser } from '../../utilities/users-service';
+import { getToken } from '../../utilities/users-service';
+import { Container, CardGroup, Card, Row, Col, Button } from "react-bootstrap";
 
 const CODE_HISTORY_API_URL = 'http://localhost:3000/api/codes/history'
+const MAX_POSSIBLE_HEIGHT = 10000;
+
+const styles = {
+  container: {
+    width: 300,
+    margin: "0 auto"
+  },
+  card: {
+    backgroundColor: "#B7E0F2",
+    borderRadius: 55,
+    padding: "3rem"
+  }
+};
+
+const ExpendableText = ({ maxHeight, children }) => {
+  const ref = useRef();
+  const [shouldShowExpand, setShouldShowExpand] = useState(false);
+  const [expanded, setExpanded] = useState(true);
+
+  useEffect(() => {
+    if (ref.current.scrollHeight > maxHeight) {
+      setShouldShowExpand(true);
+      setExpanded(false);
+    }
+  }, [maxHeight]);
+
+  return (
+    <Card.Text as="h4" style={styles.cardText} ref={ref}>
+      <div
+        className="inner"
+        style={{ maxHeight: expanded ? MAX_POSSIBLE_HEIGHT : maxHeight }}
+      >
+        {children}
+      </div>
+      {shouldShowExpand && (
+        <button onClick={() => setExpanded(!expanded)}>Expand</button>
+      )}
+    </Card.Text>
+  );
+};
 
 export default function CodeHistory() {
     const [codes, setCodes] = useState([]);
@@ -18,9 +56,6 @@ export default function CodeHistory() {
           const reply = await axios.get(CODE_HISTORY_API_URL);
           console.log(reply)
           setCodes(reply.data);
-         setTimeout(() => {
-          console.log('alex is awesome', codes)
-         }, 2000)
   
         } catch (error) {
           console.error('Error fetching codes:', error);
@@ -32,24 +67,68 @@ export default function CodeHistory() {
   
     console.log(codes)
 
+  const getCodeHistory = async () => {
+    try {
+      const currentCoder = getUser()
+      if (currentCoder) {
+        const codeToken = await getToken()
+        const reply = await axios.get(`${CODE_HISTORY_API_URL}/${currentCoder._id}`,  {
+          headers: {
+            Authorization: `Bearer ${codeToken}`,
+          }
+        })
+        setCodes(reply.data)
+      } else {
+        console.log('Coder not defined')
+      }
+    } catch (error) {
+      console.log('Error fetching codes:', error)
+    }
+  }
+  
   return (
-    <div>
-      <h1>Code History</h1>
-      {Array.isArray(codes) ? (
-        <ul>
-          {codes.map((code) => (
-            <li key={code._id}>
-            <strong>Code:</strong> {code.code}<br />
-            <strong>Explanation:</strong> {code.reply}<br />
-            {/* emphasize */}
-            <em>Timestamp: {new Date(code.timestamp).toLocaleString()}</em>
-            <p>________________________</p>
-          </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  )
+    <Container>
+      <Row>
+        <Col>
+          <Button onClick={getCodeHistory}>
+            get history</Button>
+        </Col>
+        <br />
+        <br />
+      </Row>
+      <CardGroup>
+        <Card>
+          <Row>
+            <Col>
+              <h1>Code History</h1>
+              {Array.isArray(codes) && codes.length > 0 ? (
+                <ul>
+                  {codes.map((code) => (
+                    <Card.Body key={code._id}>
+                      <li>
+                        <Card.Title>
+                          <h3>Your Title</h3>
+                        </Card.Title>
+                        <ExpendableText maxHeight={95}>
+                          <strong>Code:</strong> {code.code}<br />
+                        </ExpendableText>
+                        <ExpendableText maxHeight={95}>
+                          <strong>Explanation:</strong> {code.reply}<br />
+                        </ExpendableText>
+                        {/* emphasize */}
+                        <em>Timestamp: {new Date(code.timestamp).toLocaleString()}</em>
+                        <p>________________________</p>
+                      </li>
+                    </Card.Body>
+                  ))}
+                </ul>
+              ) : (
+                <p>Your Prompts will be Seen Here</p>
+              )}
+            </Col>
+          </Row>
+        </Card>
+      </CardGroup>
+    </Container>
+  );
 }

@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const codesCtrl = require('../controllers/codes')
-
+const ensureLoggedIn = require('../config/ensureLoggedIn')
 //localhost:3000/api/codes
-router.post('/', codesCtrl.explainCode)
+router.post('/', ensureLoggedIn, codesCtrl.explainCode)
 //localhost:3000/api/codes/history
-router.get('/history', codesCtrl.codeHistory)
+router.get('/history/:id', ensureLoggedIn, codesCtrl.codeHistory)
 
 module.exports = router

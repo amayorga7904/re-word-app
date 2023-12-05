@@ -33,7 +33,7 @@ async function explainCode(req, res) {
             const explanationContent = codeCompletion.choices[0].message.content;
 
             // Save to MongoDB
-            const openAIRecord = new CodeOpenAIModel({ code, reply: explanationContent });
+            const openAIRecord = new CodeOpenAIModel({ user: req.user._id, code, reply: explanationContent });
             await openAIRecord.save();
             // sends first JSON response to the client from OpenAI
             res.json(codeCompletion.choices[0]);
@@ -50,7 +50,8 @@ async function explainCode(req, res) {
 
 async function codeHistory(req, res) {
     try {
-        const codes = await CodeOpenAIModel.find().sort({ timestamp: -1 });
+        const codeUserId = req.user._id;
+        const codes = await CodeOpenAIModel.find({ user: codeUserId }).sort({ timestamp: -1 });
         console.log('evan is the awesomest', codes)
         res.status(200).json(codes);
     } catch (error) {
