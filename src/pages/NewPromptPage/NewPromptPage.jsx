@@ -60,7 +60,7 @@ export default function NewPromptPage() {
         <div>
           <h3>Sound Smarter with the Click of a Button</h3>
           {/* if truthy, displays value. Else displays... */}
-          <p>{loading ? 'Hmm let me think...' : responseContent || 'Let\'s Rephrase!'}</p>
+          <p>{loading ? '███████▒▒▒ 70%' : responseContent || '( ⌐▨_▨)'}</p>
         </div>
       {/* invokes handleSumbit function */}
       <form onSubmit={handleSubmit}>
