@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-
+import { getToken } from "../../utilities/users-service";
 //endpoint for OpenAI API chat completions
 // const BASE_URL = 'https://api.openai.com/v1/chat/completions'
 const BASE_URL = '/api/openAi'
@@ -23,11 +23,14 @@ export default function NewPromptPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true);
-    
-  
     try {
+      const token = await getToken();
       //async POST request to endpoint with prompt sent to req.body
-      const response = await axios.post(BASE_URL, { prompt });  
+      const response = await axios.post(BASE_URL, { prompt }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });  
       console.log('API Response:', response);    
       //responseContent is set to the first value of the API response
       if (response.data.message && response.data.message.content) {

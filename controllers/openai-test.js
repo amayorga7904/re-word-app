@@ -33,7 +33,7 @@ async function main(req, res) {
             const responseContent = completion.choices[0].message.content;
 
             // Save to MongoDB
-            const openAIRecord = new OpenAIModel({ prompt, response: responseContent });
+            const openAIRecord = new OpenAIModel({ user: req.user._id, prompt, response: responseContent });
             await openAIRecord.save();
             // sends first JSON response to the client from OpenAI
             res.json(completion.choices[0]);
@@ -50,8 +50,10 @@ async function main(req, res) {
 
 async function history(req, res) {
     try {
-        const prompts = await OpenAIModel.find().sort({ timestamp: -1 });
-        console.log('evan is the awesomest', prompts)
+        const userId = req.user._id; // Assuming user ID is stored in req.user._id
+        console.log('User ID:', userId);
+        const prompts = await OpenAIModel.find({ user: userId }).sort({ timestamp: -1 });
+        console.log('Prompts:', prompts);
         res.status(200).json(prompts);
     } catch (error) {
         console.error('Error getting prompts:', error);

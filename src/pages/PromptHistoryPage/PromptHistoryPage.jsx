@@ -4,6 +4,8 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import { Container, CardGroup, Card, Row, Col } from "react-bootstrap";
 import "./styles.css";
+import { getUser } from '../../utilities/users-service';
+import { getToken } from '../../utilities/users-service';
 
 const HISTORY_API_URL = 'http://localhost:3000/api/openAi/history'
 const MAX_POSSIBLE_HEIGHT = 10000;
@@ -54,11 +56,8 @@ export default function PromptHistoryPage() {
     const fetchPrompts = async () => {
       try {
         const response = await axios.get(HISTORY_API_URL);
-        console.log(response)
+        console.log('Response Data:', response.data);
         setPrompts(response.data);
-       setTimeout(() => {
-        console.log('alex is awesome', prompts)
-       }, 2000)
 
       } catch (error) {
         console.error('Error fetching prompts:', error);
@@ -76,17 +75,24 @@ export default function PromptHistoryPage() {
   
   const getHistory = async () => {
     try {
-      const response = await axios.get(HISTORY_API_URL);
-      console.log(response)
-      setPrompts(response.data);
-     setTimeout(() => {
-      console.log('alex is awesome', prompts)
-     }, 2000)
-
+        const currentUser = getUser();
+        if (currentUser) {
+            const token = await getToken()
+            const response = await axios.get(`${HISTORY_API_URL}/${currentUser._id}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            setPrompts(response.data);
+        } else {
+            console.error('User not defined');
+        }
     } catch (error) {
-      console.error('Error fetching prompts:', error);
+        console.error('Error fetching prompts:', error);
     }
-  };
+};
+
+
 
   return (
     <Container>
@@ -102,34 +108,38 @@ export default function PromptHistoryPage() {
         </Col>
       </Row>
       <CardGroup>
-        <Card>
-          <Row>
-            <Col>
-              <h1>Prompt History</h1>
-              <ul>
-                {prompts.map((prompt) => (
-                  <Card.Body key={prompt._id}>
-                    <li>
-                      <Card.Title>
-                        <h3>Your Title</h3>
-                      </Card.Title>
-                      <ExpendableText maxHeight={95}>
-                        <strong>Prompt:</strong> {prompt.prompt}<br />
-                      </ExpendableText>
-                      <ExpendableText maxHeight={95}>
-                        <strong>Response:</strong> {prompt.response}<br />
-                      </ExpendableText>
-                      {/* emphasize */}
-                      <em>Timestamp: {new Date(prompt.timestamp).toLocaleString()}</em>
-                      <p>________________________</p>
-                    </li>
-                  </Card.Body>
-                ))}
-              </ul>
-            </Col>
-          </Row>
-        </Card>
-      </CardGroup>
+  <Card>
+    <Row>
+      <Col>
+        <h1>Prompt History</h1>
+        {Array.isArray(prompts) && prompts.length > 0 ? (
+          <ul>
+            {prompts.map((prompt) => (
+              <Card.Body key={prompt._id}>
+                <li>
+                  <Card.Title>
+                    <h3>Your Title</h3>
+                  </Card.Title>
+                  <ExpendableText maxHeight={95}>
+                    <strong>Prompt:</strong> {prompt.prompt}<br />
+                  </ExpendableText>
+                  <ExpendableText maxHeight={95}>
+                    <strong>Response:</strong> {prompt.response}<br />
+                  </ExpendableText>
+                  {/* emphasize */}
+                  <em>Timestamp: {new Date(prompt.timestamp).toLocaleString()}</em>
+                  <p>________________________</p>
+                </li>
+              </Card.Body>
+            ))}
+          </ul>
+        ) : (
+          <p>No prompts available.</p>
+        )}
+      </Col>
+    </Row>
+  </Card>
+</CardGroup>
     </Container>
   );
 }
