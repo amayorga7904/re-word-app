@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import './NewCodePage.css'
 
 
 const CODE_BASE_URL = 'http://localhost:3000/api/codes'
@@ -68,7 +69,7 @@ export default function NewCodePage() {
                 <div>
                   <h3>Be Able to Explain Code like a Pro!</h3>
                   {/* if truthy, displays value. Else displays... */}
-                  <p>{loadingArea ? '███████▒▒▒ 70%' : explanationContent || '( ⌐▨_▨)'}</p>
+                  <p>{loadingArea ? '…. Loading' : explanationContent || 'ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ'}</p>
                 </div>
               {/* invokes handleSumbit function */}
               <form onSubmit={handleSubmit}>
@@ -78,11 +79,10 @@ export default function NewCodePage() {
                   //sets code state variable
                   value={code}
                   onChange={handleCode}
+                  style={{ width: '100%' }} 
                 />
-                <Col>
                   <Button variant="primary"
                   type="submit">Submit</Button>
-                </Col>
                 <br />
                 <br />
               </form>
