@@ -94,7 +94,7 @@ export default function PromptHistoryPage() {
     <Container className='prompt-page'>
       <Row>
         <Col>
-          <Button variant='light' onClick={getHistory}>
+          <Button variant='dark' onClick={getHistory}>
             Get History</Button>
         </Col>
         <br />

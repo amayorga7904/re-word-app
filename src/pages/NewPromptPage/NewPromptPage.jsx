@@ -88,7 +88,7 @@ export default function NewPromptPage() {
                 <Form.Label>Enter Text You Wish to Rephrase</Form.Label>
                 <Form.Control className='text-area' as="textarea" rows={6} />
               </Form.Group>
-              <Button variant="light"
+              <Button variant="dark"
               type="submit">Submit</Button>
               <br />
               <br />
