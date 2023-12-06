@@ -43,7 +43,7 @@ const ExpendableText = ({ maxHeight, children }) => {
         {children}
       </div>
       {shouldShowExpand && (
-        <button onClick={() => setExpanded(!expanded)}>Expand</button>
+        <Button variant='light' onClick={() => setExpanded(!expanded)}>Expand</Button>
       )}
     </Card.Text>
   );
@@ -68,10 +68,6 @@ export default function PromptHistoryPage() {
   }, []);
 
   console.log(prompts)
-  async function handleCheckToken() {
-    const expDate = await checkToken();
-    console.log(expDate);
-  }
   
   const getHistory = async () => {
     try {
@@ -95,17 +91,14 @@ export default function PromptHistoryPage() {
 
 
   return (
-    <Container>
+    <Container className='prompt-page'>
       <Row>
         <Col>
-          <Button variant='info' onClick={getHistory}>
-            get history</Button>
+          <Button variant='light' onClick={getHistory}>
+            Get History</Button>
         </Col>
         <br />
         <br />
-        <Col>
-          <Button onClick={handleCheckToken}>Check Login</Button>
-        </Col>
       </Row>
       <CardGroup>
         <Card>

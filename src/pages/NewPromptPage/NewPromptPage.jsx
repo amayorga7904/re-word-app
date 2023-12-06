@@ -64,7 +64,7 @@ export default function NewPromptPage() {
     }
 
   return (
-    <Container>
+    <Container className="new-prompt-page">
         <Row>
           <Col sm={8}>
             <div>
@@ -85,7 +85,7 @@ export default function NewPromptPage() {
               value={prompt}
               onChange={handlePrompt}
             />
-              <Button variant="success"
+              <Button variant="light"
               type="submit">Submit</Button>
           </form>
           </Col>
