@@ -1,52 +1,13 @@
-import { Container, CardGroup, Card, Row, Col } from "react-bootstrap";
-import React, { useRef, useEffect, useState } from "react";
+import { Container, CardGroup, Card, Row, Col, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { getToken } from '../../utilities/users-service';
 import { getUser } from '../../utilities/users-service';
-import Button from 'react-bootstrap/Button';
+import { ExpendableText } from '../HistoryHelper'
 import './PromptHistoryPage.css'
 import axios from "axios";
 
 const HISTORY_API_URL = 'http://localhost:3000/api/openAi/history'
-const MAX_POSSIBLE_HEIGHT = 10000;
 
-const styles = {
-  container: {
-    width: 300,
-    margin: "0 auto"
-  },
-  card: {
-    backgroundColor: "#B7E0F2",
-    borderRadius: 55,
-    padding: "3rem"
-  }
-};
-
-const ExpendableText = ({ maxHeight, children }) => {
-  const ref = useRef();
-  const [shouldShowExpand, setShouldShowExpand] = useState(false);
-  const [expanded, setExpanded] = useState(true);
-
-  useEffect(() => {
-    if (ref.current.scrollHeight > maxHeight) {
-      setShouldShowExpand(true);
-      setExpanded(false);
-    }
-  }, [maxHeight]);
-
-  return (
-    <Card.Text as="h4" style={styles.cardText} ref={ref}>
-      <div
-        className="inner"
-        style={{ maxHeight: expanded ? MAX_POSSIBLE_HEIGHT : maxHeight }}
-      >
-        {children}
-      </div>
-      {shouldShowExpand && (
-        <Button variant='dark' onClick={() => setExpanded(!expanded)}>Expand</Button>
-      )}
-    </Card.Text>
-  );
-};
 const PromptHistoryPage = () => {
   const [prompts, setPrompts] = useState([]);
   const [promptTitle, setPromptTitle] = useState('')
