@@ -9,7 +9,7 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 })
 
-async function main(req, res) {
+const main = async(req, res) => {
     //destructures prompt to extract data sent in the body of the POST request
     //similar to *req.body.prompt*
     const { prompt } = req.body
@@ -49,7 +49,7 @@ async function main(req, res) {
     }
 }
 
-async function history(req, res) {
+const history = async(req, res) => {
     try {
         const userId = req.user._id; // Assuming user ID is stored in req.user._id
         console.log('User ID:', userId);
@@ -62,7 +62,7 @@ async function history(req, res) {
     }
 }
 
-async function updatePromptTitle(req, res) {
+const updatePromptTitle = async(req, res) => {
     try {
         const userId = req.params.userId
         const promptId = req.params.promptId
