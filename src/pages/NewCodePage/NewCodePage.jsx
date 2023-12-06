@@ -13,7 +13,7 @@ import './NewCodePage.css'
 
 const CODE_BASE_URL = 'http://localhost:3000/api/codes'
 
-export default function NewCodePage() {
+const NewCodePage = () => {
     const { addReply } = useCodeOpenAI()
     //used to update the value of code
     const [code, setCode] = useState('')
@@ -101,3 +101,4 @@ export default function NewCodePage() {
       )
     }
     
+    export default NewCodePage
