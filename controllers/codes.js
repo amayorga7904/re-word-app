@@ -2,14 +2,13 @@ const OpenAI = require("openai")
 const CodeOpenAIModel = require('../models/codeAI')
 const User = require('../models/user')
 
-
 //creates OpenAI client to make make requests to OpenAI GPT-3 service
 //API key provided for authenticating and authorizing requests to OpenAI API
 const codeOpenai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 })
 
-async function explainCode(req, res) {
+const explainCode = async(req, res) => {
     //destructures prompt to extract data sent in the body of the POST request
     //similar to *req.body.prompt*
     const { code } = req.body
@@ -17,7 +16,6 @@ async function explainCode(req, res) {
         //sends a request to the OpenAI API to generate completions based on a chat conversation
         const codeCompletion = await codeOpenai.chat.completions.create({
             messages: [{
-                //sets the role of the OpenAI
                 role: "system",
                 content: "You will be provided with a piece of code, and your task is to explain it in a concise way."
             }, {
@@ -38,18 +36,14 @@ async function explainCode(req, res) {
             await openAIRecord.save();
             // sends first JSON response to the client from OpenAI
             res.json(codeCompletion.choices[0]);
-        } else {
-            console.error('Error: Unexpected response structure');
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-        //error handling
+        } 
     } catch (error) {
         console.error('Error:', error)
         res.status(500).json({ error: 'Internal Server Error' })
     }
 }
 
-async function codeHistory(req, res) {
+const codeHistory = async(req, res) => {
     try {
         const codeUserId = req.user._id;
         const codes = await CodeOpenAIModel.find({ user: codeUserId }).sort({ timestamp: -1 });
@@ -61,7 +55,7 @@ async function codeHistory(req, res) {
     }
 }
 
-async function updateTitle(req, res) {
+const updateTitle = async(req, res) => {
     try {
         const userId = req.params.userId;
         const codeId = req.params.codeId;
@@ -80,7 +74,6 @@ async function updateTitle(req, res) {
         }
         // Update the code title
         code.title = newTitle;
-        console.log('my mannnn', code.title)
         await code.save();
     
         // Respond with success
