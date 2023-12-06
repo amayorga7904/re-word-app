@@ -1,11 +1,10 @@
-import { checkToken } from '../../utilities/users-service';
-import React, { useRef, useEffect, useState } from "react";
-import axios from "axios";
-import Button from 'react-bootstrap/Button';
 import { Container, CardGroup, Card, Row, Col } from "react-bootstrap";
-import { getUser } from '../../utilities/users-service';
+import React, { useRef, useEffect, useState } from "react";
 import { getToken } from '../../utilities/users-service';
+import { getUser } from '../../utilities/users-service';
+import Button from 'react-bootstrap/Button';
 import './PromptHistoryPage.css'
+import axios from "axios";
 
 const HISTORY_API_URL = 'http://localhost:3000/api/openAi/history'
 const MAX_POSSIBLE_HEIGHT = 10000;

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import { signUp } from '../../utilities/users-service';
 import { Button } from 'react-bootstrap';
+import React, { useState } from 'react';
 
 const signUpData = {
   name: '',

@@ -1,14 +1,10 @@
-import React, { useState } from "react"
-import axios from "axios"
+import { Button, Spinner, Form, Row, Col, Container } from 'react-bootstrap';
 import { useCodeOpenAI } from "../CodeHistory/CodeAIAPI" 
-import CodeHistory from "../CodeHistory/CodeHistory"
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Button, Spinner } from 'react-bootstrap';
 import { getToken } from "../../utilities/users-service";
-import Form from 'react-bootstrap/Form';
+import CodeHistory from "../CodeHistory/CodeHistory"
+import React, { useState } from "react"
 import './NewCodePage.css'
+import axios from "axios"
 
 
 const CODE_BASE_URL = 'http://localhost:3000/api/codes'

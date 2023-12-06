@@ -1,15 +1,11 @@
+import { Button, Spinner, Row, Col, Form, Container } from 'react-bootstrap';
+import PromptHistoryPage from "../PromptHistoryPage/PromptHistoryPage"
+import { useOpenAI } from "../PromptHistoryPage/OpenAIAPI"
+import { getToken } from "../../utilities/users-service";
 import React, { useState } from "react"
 import axios from "axios"
-import { useOpenAI } from "../PromptHistoryPage/OpenAIAPI"
-import PromptHistoryPage from "../PromptHistoryPage/PromptHistoryPage"
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Button, Spinner } from 'react-bootstrap';
-import { getToken } from "../../utilities/users-service";
-import Form from 'react-bootstrap/Form';
+
 //endpoint for OpenAI API chat completions
-// const BASE_URL = 'https://api.openai.com/v1/chat/completions'
 const BASE_URL = '/api/openAi'
 
 

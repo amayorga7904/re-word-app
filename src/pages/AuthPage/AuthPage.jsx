@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import { Button } from 'react-bootstrap';
+import { useState } from 'react';
 
 const AuthPage = ({ setUser }) => {
   const [showSignUp, setShowSignUp] = useState(false);
