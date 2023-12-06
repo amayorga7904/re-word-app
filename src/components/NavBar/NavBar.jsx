@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import './NavBar.css'
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -16,9 +17,9 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <>
-      <Navbar key={false} expand={false} className="bg-body-tertiary mb-3">
+      <Navbar key={false} expand={false} className="bg-body-tertiary mb-3 nav" className='nav'>
         <Container fluid>
-          <Navbar.Brand>Be a Pro Without Being a Pro</Navbar.Brand>
+          <Navbar.Brand className='nav-text'>Be a Pro Without Being a Pro</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
           <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${false}`}
@@ -26,7 +27,7 @@ export default function NavBar({ user, setUser }) {
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${false}`}>
+                <Offcanvas.Title className='title' id={`offcanvasNavbarLabel-expand-${false}`}>
                   WORD-IQ
                 </Offcanvas.Title>
               </Offcanvas.Header>

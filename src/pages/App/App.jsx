@@ -17,7 +17,7 @@ export default function App() {
     <main className="App">
       { user ?
           <>
-            <h1>WORD-IQ</h1>
+            <h1 className='title'>WORD-IQ</h1>
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}

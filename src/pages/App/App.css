@@ -1,6 +1,11 @@
 .App {
     font-family: 'Montserrat Alternates', sans-serif;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(67, 67, 67);
+    color: white;
+}
+
+.title {
+    color: white;
 }
 
 
