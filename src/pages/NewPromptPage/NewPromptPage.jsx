@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Button, Spinner } from 'react-bootstrap';
 import { getToken } from "../../utilities/users-service";
+import Form from 'react-bootstrap/Form';
 //endpoint for OpenAI API chat completions
 // const BASE_URL = 'https://api.openai.com/v1/chat/completions'
 const BASE_URL = '/api/openAi'
@@ -68,7 +69,7 @@ export default function NewPromptPage() {
         <Row>
           <Col sm={8}>
             <div>
-              <h3>Sound Smarter with the Click of a Button</h3>
+              <h3>Sound Smarter with the Click of a Button!</h3>
               <h6>Ask me How!</h6>
               <br />
               {/* if truthy, displays value. Else displays... */}
@@ -77,17 +78,21 @@ export default function NewPromptPage() {
               <Spinner animation="grow" /> : responseContent || '( ⌐▨_▨)'}</p>
             </div>
           {/* invokes handleSumbit function */}
-          <form onSubmit={handleSubmit}>
-            <textarea
-              className='text-area'
-              placeholder='Enter Text You Wish to Improve'
+          <Form onSubmit={handleSubmit}>
+            <Form.Group
+              className="mb-6"
+              controlId="exampleForm.ControlTextarea1"
               //sets prompt state variable
               value={prompt}
-              onChange={handlePrompt}
-            />
+              onChange={handlePrompt}>
+                <Form.Label>Enter Text You Wish to Rephrase</Form.Label>
+                <Form.Control className='text-area' as="textarea" rows={6} />
+              </Form.Group>
               <Button variant="light"
               type="submit">Submit</Button>
-          </form>
+              <br />
+              <br />
+          </Form>
           </Col>
         <Col sm={true}>
           <PromptHistoryPage />

@@ -129,6 +129,8 @@ export default function CodeHistory() {
           </Row>
         </Card>
       </CardGroup>
+      <br />
+      <br />
     </Container>
   );
 }

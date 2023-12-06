@@ -133,6 +133,8 @@ export default function PromptHistoryPage() {
           </Row>
         </Card>
       </CardGroup>
+      <br />
+      <br />
     </Container>
   );
 }
