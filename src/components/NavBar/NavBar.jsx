@@ -19,7 +19,7 @@ export default function NavBar({ user, setUser }) {
     <>
       <Navbar key={false} expand={false} className="bg-body-tertiary mb-3 nav" className='nav'>
         <Container fluid>
-          <Navbar.Brand className='nav-text'>Be a Pro Without Being a Pro</Navbar.Brand>
+          <Navbar.Brand className='nav-text'>Welcome, { user.name }! Be a Pro Without Being a Pro!</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
           <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${false}`}
