@@ -123,7 +123,7 @@ export default function CodeHistory() {
                   ))}
                 </ul>
               ) : (
-                <p>Your Prompts will be Seen Here</p>
+                <p>Your Code will be Seen Here</p>
               )}
             </Col>
           </Row>

@@ -84,7 +84,7 @@ export default function NewCodePage() {
                   //sets code state variable
                   value={code}
                   onChange={handleCode}>
-                  <Form.Label>Enter Code Here</Form.Label>
+                  <Form.Label>Enter Code Below</Form.Label>
                   <Form.Control className='text-area' as="textarea" rows={6} />
                 </Form.Group>
                   <Button variant="dark"
