@@ -2,19 +2,19 @@ import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
 import { Button } from 'react-bootstrap';
 
-export default function LoginForm({ setUser }) {
+const LoginForm = ({ setUser }) => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
   });
   const [error, setError] = useState('');
 
-  function handleChange(evt) {
+const handleChange = (evt) => {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
     setError('');
   }
 
-  async function handleSubmit(evt) {
+  const handleSubmit = async(evt) => {
     // Prevent form from being submitted to the server
     evt.preventDefault();
     try {
@@ -43,3 +43,5 @@ export default function LoginForm({ setUser }) {
     </div>
   );
 }
+
+export default LoginForm
