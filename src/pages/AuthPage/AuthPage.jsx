@@ -3,7 +3,7 @@ import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import { Button } from 'react-bootstrap';
 
-export default function AuthPage({ setUser }) {
+const AuthPage = ({ setUser }) => {
   const [showSignUp, setShowSignUp] = useState(false);
   return (
     <main>
@@ -17,3 +17,5 @@ export default function AuthPage({ setUser }) {
     </main>
   );
 }
+
+export default AuthPage
