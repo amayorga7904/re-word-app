@@ -97,7 +97,7 @@ export default function PromptHistoryPage() {
     <Container>
       <Row>
         <Col>
-          <Button onClick={getHistory}>
+          <Button variant='info' onClick={getHistory}>
             get history</Button>
         </Col>
         <br />

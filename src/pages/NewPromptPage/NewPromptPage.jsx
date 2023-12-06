@@ -66,9 +66,6 @@ export default function NewPromptPage() {
   return (
     <Container>
         <Row>
-        <Col sm={true}>
-          <PromptHistoryPage />
-        </Col>
           <Col sm={8}>
             <div>
               <h3>Sound Smarter with the Click of a Button</h3>
@@ -84,13 +81,12 @@ export default function NewPromptPage() {
               value={prompt}
               onChange={handlePrompt}
             />
-            <Col>
-              <Button variant="primary"
+              <Button variant="success"
               type="submit">Submit</Button>
-            </Col>
-            <br />
-            <br />
           </form>
+          </Col>
+        <Col sm={true}>
+          <PromptHistoryPage />
         </Col>
       </Row>
     </Container>

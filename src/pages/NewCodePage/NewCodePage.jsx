@@ -67,9 +67,6 @@ export default function NewCodePage() {
       return (
         <Container>
             <Row>
-            <Col sm={true}>
-              <CodeHistory />
-            </Col>
               <Col sm={8}>
                 <div>
                   <h3>Explain Code like a Pro!</h3>
@@ -86,11 +83,14 @@ export default function NewCodePage() {
                   onChange={handleCode}
                   style={{ width: '100%' }} 
                 />
-                  <Button variant="primary"
+                  <Button variant="dark"
                   type="submit">Submit</Button>
                 <br />
                 <br />
               </form>
+            </Col>
+            <Col sm={true}>
+              <CodeHistory />
             </Col>
           </Row>
         </Container>

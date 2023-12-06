@@ -90,7 +90,7 @@ export default function CodeHistory() {
     <Container>
       <Row>
         <Col>
-          <Button onClick={getCodeHistory}>
+          <Button variant='info' onClick={getCodeHistory}>
             get history</Button>
         </Col>
         <br />
