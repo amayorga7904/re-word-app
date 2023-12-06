@@ -2,3 +2,7 @@
   overflow: hidden;
   transition: max-height 0.2s ease;
 }
+
+.code-history-page {
+  background-color: rgb(67, 67, 67);
+}

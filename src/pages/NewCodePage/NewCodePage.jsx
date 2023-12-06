@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Button, Spinner } from 'react-bootstrap';
 import { getToken } from "../../utilities/users-service";
+import Form from 'react-bootstrap/Form';
+import './NewCodePage.css'
 
 
 const CODE_BASE_URL = 'http://localhost:3000/api/codes'
@@ -64,7 +66,7 @@ export default function NewCodePage() {
       }
 
       return (
-        <Container>
+        <Container className="new-code-page">
             <Row>
               <Col sm={8}>
                 <div>
@@ -75,20 +77,21 @@ export default function NewCodePage() {
                   <p>{loadingArea ? <Spinner animation="grow" /> : explanationContent || 'ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ'}</p>
                 </div>
               {/* invokes handleSumbit function */}
-              <form onSubmit={handleSubmit}>
-                <textarea
-                  className='text-area'
-                  placeholder='Enter Code Here'
+              <Form onSubmit={handleSubmit}>
+                <Form.Group
+                  className="mb-6"
+                  controlId="exampleForm.ControlTextarea1"
                   //sets code state variable
                   value={code}
-                  onChange={handleCode}
-                  style={{ width: '100%' }} 
-                />
+                  onChange={handleCode}>
+                  <Form.Label>Enter Code Here</Form.Label>
+                  <Form.Control className='text-area' as="textarea" rows={6} />
+                </Form.Group>
                   <Button variant="dark"
                   type="submit">Submit</Button>
                 <br />
                 <br />
-              </form>
+              </Form>
             </Col>
             <Col sm={true}>
               <CodeHistory />

@@ -40,7 +40,7 @@ const ExpendableText = ({ maxHeight, children }) => {
         {children}
       </div>
       {shouldShowExpand && (
-        <button onClick={() => setExpanded(!expanded)}>Expand</button>
+        <Button variant='dark' onClick={() => setExpanded(!expanded)}>Expand</Button>
       )}
     </Card.Text>
   );
@@ -87,11 +87,11 @@ export default function CodeHistory() {
   }
   
   return (
-    <Container>
+    <Container className="code-history-page">
       <Row>
         <Col>
-          <Button variant='info' onClick={getCodeHistory}>
-            get history</Button>
+          <Button variant='dark' onClick={getCodeHistory}>
+            Get History</Button>
         </Col>
         <br />
         <br />
