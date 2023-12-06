@@ -2,40 +2,39 @@ import React, { useState } from 'react';
 import { signUp } from '../../utilities/users-service';
 import { Button } from 'react-bootstrap';
 
-const signUpData = {
-  name: '',
-  email: '',
-  password: '',
-  confirm: '',
-  error: ''
-}
-
 const SignUpForm = ({ setUser }) => {
-  const [formData, setFormData] = useState(signUpData);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirm: '',
+    error: ''
+  });
 
-  const handleChange = (e) => {
+  const handleChange = (evt) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [evt.target.name]: evt.target.value,
       error: ''
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
     try {
       const { name, email, password } = formData;
       // The promise returned by the signUp service
       // method will resolve to the user object included
       // in the payload of the JSON Web Token (JWT)
-      const user = await signUp(formData);
-      setUser(user)
+      const user = await signUp({ name, email, password });
+      setUser(user);
     } catch {
       // An error occurred
       // Probably due to a duplicate email
       setFormData({ ...formData, error: 'Sign Up Failed - Try Again' });
     }
   };
+
   const disable = formData.password !== formData.confirm;
 
   return (
