@@ -47,7 +47,7 @@ const ExpendableText = ({ maxHeight, children }) => {
   );
 };
 
-export default function CodeHistory() {
+const CodeHistory = () => {
     const [codes, setCodes] = useState([]);
     const [title, setTitle] = useState('')
   
@@ -176,3 +176,6 @@ export default function CodeHistory() {
     </Container>
   );
 }
+
+
+export default CodeHistory
