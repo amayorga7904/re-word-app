@@ -9,7 +9,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import CodeHistory from '../CodeHistory/CodeHistory';
 import NewCodePage from '../NewCodePage/NewCodePage';
 
-export default function App() {
+const App = () => {
   const [user, setUser] = useState(getUser());
   
 
@@ -33,3 +33,5 @@ export default function App() {
     </main>
   );
 }
+
+export default App
