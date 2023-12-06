@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Container, CardGroup, Card, Row, Col } from "react-bootstrap";
 import { getUser } from '../../utilities/users-service';
 import { getToken } from '../../utilities/users-service';
+import './PromptHistoryPage.css'
 
 const HISTORY_API_URL = 'http://localhost:3000/api/openAi/history'
 const MAX_POSSIBLE_HEIGHT = 10000;

@@ -5,7 +5,7 @@ import PromptHistoryPage from "../PromptHistoryPage/PromptHistoryPage"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import { Button, Spinner } from 'react-bootstrap';
 import { getToken } from "../../utilities/users-service";
 //endpoint for OpenAI API chat completions
 // const BASE_URL = 'https://api.openai.com/v1/chat/completions'
@@ -69,8 +69,12 @@ export default function NewPromptPage() {
           <Col sm={8}>
             <div>
               <h3>Sound Smarter with the Click of a Button</h3>
+              <h6>Ask me How!</h6>
+              <br />
               {/* if truthy, displays value. Else displays... */}
-              <p>{loading ? '███████▒▒▒ 70%' : responseContent || '( ⌐▨_▨)'}</p>
+              <p>{
+              loading ?
+              <Spinner animation="grow" /> : responseContent || '( ⌐▨_▨)'}</p>
             </div>
           {/* invokes handleSumbit function */}
           <form onSubmit={handleSubmit}>

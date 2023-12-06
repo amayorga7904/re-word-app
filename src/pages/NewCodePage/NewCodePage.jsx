@@ -5,8 +5,7 @@ import CodeHistory from "../CodeHistory/CodeHistory"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import './NewCodePage.css'
+import { Button, Spinner } from 'react-bootstrap';
 import { getToken } from "../../utilities/users-service";
 
 
@@ -70,8 +69,10 @@ export default function NewCodePage() {
               <Col sm={8}>
                 <div>
                   <h3>Explain Code like a Pro!</h3>
+                  <h6>Ask me How!</h6>
+                  <br />
                   {/* if truthy, displays value. Else displays... */}
-                  <p>{loadingArea ? '…. Loading' : explanationContent || 'ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ'}</p>
+                  <p>{loadingArea ? <Spinner animation="grow" /> : explanationContent || 'ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ'}</p>
                 </div>
               {/* invokes handleSumbit function */}
               <form onSubmit={handleSubmit}>
