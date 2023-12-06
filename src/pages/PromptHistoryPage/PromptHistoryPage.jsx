@@ -43,7 +43,7 @@ const ExpendableText = ({ maxHeight, children }) => {
         {children}
       </div>
       {shouldShowExpand && (
-        <Button variant='light' onClick={() => setExpanded(!expanded)}>Expand</Button>
+        <Button variant='dark' onClick={() => setExpanded(!expanded)}>Expand</Button>
       )}
     </Card.Text>
   );
