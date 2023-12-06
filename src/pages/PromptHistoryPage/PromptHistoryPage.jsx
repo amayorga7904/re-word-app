@@ -48,7 +48,7 @@ const ExpendableText = ({ maxHeight, children }) => {
     </Card.Text>
   );
 };
-export default function PromptHistoryPage() {
+const PromptHistoryPage = () => {
   const [prompts, setPrompts] = useState([]);
   const [promptTitle, setPromptTitle] = useState('')
 
@@ -173,3 +173,4 @@ const updatePromptTitle = async (promptId) => {
   );
 }
 
+export default PromptHistoryPage

@@ -13,7 +13,7 @@ import Form from 'react-bootstrap/Form';
 const BASE_URL = '/api/openAi'
 
 
-export default function NewPromptPage() {
+const NewPromptPage = () => {
   const { addResponse } = useOpenAI();
   //used to update the value of prompt
   const [prompt, setPrompt] = useState('')
@@ -99,3 +99,5 @@ export default function NewPromptPage() {
     </Container>
   )
 }
+
+export default NewPromptPage
