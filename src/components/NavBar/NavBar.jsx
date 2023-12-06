@@ -9,7 +9,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import './NavBar.css'
 
-export default function NavBar({ user, setUser }) {
+const NavBar = ({ user, setUser }) => {
   function handleLogOut() {
     userService.logOut();
     setUser(null);
@@ -44,3 +44,5 @@ export default function NavBar({ user, setUser }) {
     </>
   )
 }
+
+export default NavBar
