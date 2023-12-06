@@ -6,3 +6,7 @@
 .code-history-page {
   background-color: rgb(67, 67, 67);
 }
+
+ul {
+  list-style-type: none;
+}

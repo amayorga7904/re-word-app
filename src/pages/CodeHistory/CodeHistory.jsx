@@ -107,7 +107,7 @@ export default function CodeHistory() {
           },
         }
       );
-
+      setTitle('')
       // Refresh the code history after updating the title
       getCodeHistory();
     } catch (error) {
