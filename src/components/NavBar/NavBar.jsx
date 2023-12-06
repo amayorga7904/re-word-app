@@ -19,7 +19,7 @@ export default function NavBar({ user, setUser }) {
     <>
       <Navbar key={false} expand={false} className="bg-body-tertiary mb-3 nav" className='nav'>
         <Container fluid>
-          <Navbar.Brand className='nav-text'>Welcome, <span className='username'>{ user.name }</span>! Be a Pro Without Being a Pro!</Navbar.Brand>
+          <Navbar.Brand className='nav-text'>Welcome, <span className='username'>{ user.name }</span>!</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
           <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${false}`}
@@ -28,7 +28,7 @@ export default function NavBar({ user, setUser }) {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title className='title' id={`offcanvasNavbarLabel-expand-${false}`}>
-                  WORD-IQ
+                Be a Pro Without Being a Pro!
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>

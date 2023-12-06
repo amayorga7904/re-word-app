@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const codeOpenAISchema = new Schema({
+    title: String,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'

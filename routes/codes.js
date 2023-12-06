@@ -7,4 +7,6 @@ router.post('/', ensureLoggedIn, codesCtrl.explainCode)
 //localhost:3000/api/codes/history
 router.get('/history/:id', ensureLoggedIn, codesCtrl.codeHistory)
 
+router.put('/history/:userId/:codeId', ensureLoggedIn, codesCtrl.updateTitle)
+
 module.exports = router

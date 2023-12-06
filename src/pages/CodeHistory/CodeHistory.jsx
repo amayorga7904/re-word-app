@@ -24,6 +24,7 @@ const ExpendableText = ({ maxHeight, children }) => {
   const [shouldShowExpand, setShouldShowExpand] = useState(false);
   const [expanded, setExpanded] = useState(true);
 
+
   useEffect(() => {
     if (ref.current.scrollHeight > maxHeight) {
       setShouldShowExpand(true);
@@ -48,6 +49,7 @@ const ExpendableText = ({ maxHeight, children }) => {
 
 export default function CodeHistory() {
     const [codes, setCodes] = useState([]);
+    const [title, setTitle] = useState('')
   
     useEffect(() => {
       // Fetch saved codes when the component mounts
@@ -86,6 +88,34 @@ export default function CodeHistory() {
     }
   }
   
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value.toUpperCase());
+  };
+
+  const updateCodeTitle = async (codeId) => {
+    try {
+      const currentCoder = getUser();
+      const codeToken = await getToken();
+      console.log('Updated Title:', title);
+      // Update the title for the specific code
+      await axios.put(
+        `${CODE_HISTORY_API_URL}/${currentCoder._id}/${codeId}`,
+        { title },
+        {
+          headers: {
+            Authorization: `Bearer ${codeToken}`,
+          },
+        }
+      );
+
+      // Refresh the code history after updating the title
+      getCodeHistory();
+    } catch (error) {
+      console.error('Error updating code title:', error);
+    }
+  };
+
+
   return (
     <Container className="code-history-page">
       <Row>
@@ -107,8 +137,20 @@ export default function CodeHistory() {
                     <Card.Body key={code._id}>
                       <li>
                         <Card.Title>
-                          <h3>Your Title</h3>
+                          <h3>
+                            <input
+                            type="text"
+                            value={title}
+                            onChange={handleTitleChange}
+                            placeholder="Change Title"
+                            />
+                            <Button variant='dark' onClick={() => updateCodeTitle(code._id)}>Save</Button>
+                          </h3>
                         </Card.Title>
+                        <br />
+                        <strong>{code.title}</strong>
+                        <br />
+                        <br />
                         <ExpendableText maxHeight={95}>
                           <strong>Code:</strong> {code.code}<br />
                         </ExpendableText>

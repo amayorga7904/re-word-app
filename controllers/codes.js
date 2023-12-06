@@ -1,5 +1,6 @@
 const OpenAI = require("openai")
 const CodeOpenAIModel = require('../models/codeAI')
+const User = require('../models/user')
 
 
 //creates OpenAI client to make make requests to OpenAI GPT-3 service
@@ -60,7 +61,38 @@ async function codeHistory(req, res) {
     }
 }
 
+async function updateTitle(req, res) {
+    try {
+        const userId = req.params.userId;
+        const codeId = req.params.codeId;
+        const newTitle = req.body.title; // Make sure the request body contains the 'title' field
+    
+        // Check if the user and code exist, and update the title
+        // Your actual implementation may vary based on your database structure and ORM
+        const user = await User.findById(userId);
+        if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+        }
+    
+        const code = await CodeOpenAIModel.findById(codeId);
+        if (!code) {
+          return res.status(404).json({ error: 'Code not found' });
+        }
+        // Update the code title
+        code.title = newTitle;
+        console.log('my mannnn', code.title)
+        await code.save();
+    
+        // Respond with success
+        res.status(200).json({ message: 'Title updated successfully' });
+      } catch (error) {
+        console.error('Error updating code title:', error);
+        res.status(500).json({ error: 'Internal server error' });
+      }
+    }
+
 module.exports = {
     explainCode, 
-    codeHistory
+    codeHistory,
+    updateTitle
 }
