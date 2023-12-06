@@ -1,15 +1,15 @@
 import { Container, CardGroup, Card, Row, Col, Button } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { getToken } from '../../utilities/users-service';
 import { getUser } from '../../utilities/users-service';
 import { ExpendableText } from '../HistoryHelper'
 import './CodeHistory.css'
 import axios from "axios";
 
-const CODE_HISTORY_API_URL = 'http://localhost:3000/api/codes/history'
+const CODE_HISTORY_API_URL = 'http://localhost:3000/api/math/history'
 
 
-const CodeHistory = () => {
+const MathHistory = () => {
     const [codes, setCodes] = useState([]);
     const [title, setTitle] = useState('')
   
@@ -92,7 +92,7 @@ const CodeHistory = () => {
         <Card>
           <Row>
             <Col>
-              <h1>Code History</h1>
+              <h1>Math History</h1>
               {Array.isArray(codes) && codes.length > 0 ? (
                 <ul>
                   {codes.map((code) => (
@@ -127,7 +127,7 @@ const CodeHistory = () => {
                   ))}
                 </ul>
               ) : (
-                <p>Your Code will be Seen Here</p>
+                <p>Your Math Equations will be Seen Here</p>
               )}
             </Col>
           </Row>
@@ -140,4 +140,4 @@ const CodeHistory = () => {
 }
 
 
-export default CodeHistory
+export default MathHistory

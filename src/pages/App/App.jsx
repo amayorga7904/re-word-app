@@ -25,6 +25,8 @@ const App = () => {
               <Route path="/api/openAi/history" element={<PromptHistoryPage />} />
               <Route path="/api/codes" element={<NewCodePage />} />
               <Route path="/api/codes/history" element={<CodeHistory />} />
+              <Route path="/api/math" element={<NewCodePage />} />
+              <Route path="/api/math/history" element={<CodeHistory />} />
             </Routes>
           </>
           :

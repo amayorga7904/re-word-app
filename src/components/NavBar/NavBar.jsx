@@ -10,7 +10,7 @@ const NavBar = ({ user, setUser }) => {
 
   return (
     <>
-      <Navbar key={false} expand={false} className="bg-body-tertiary mb-3 nav" className='nav'>
+      <Navbar key={false} expand={false} className="bg-body-tertiary mb-3" className='nav'>
         <Container fluid>
           <Navbar.Brand className='nav-text'>Welcome, <span className='username'>{ user.name }</span>!</Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
@@ -28,6 +28,7 @@ const NavBar = ({ user, setUser }) => {
               <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link href="/api/openAi">New Prompt</Nav.Link>
                   <Nav.Link href="/api/codes">New Code</Nav.Link>
+                  <Nav.Link href="/api/math">New Math Equation</Nav.Link>
                   <Nav.Link href="" onClick={handleLogOut}>Log Out</Nav.Link>
                 </Nav>
           </Offcanvas.Body>
