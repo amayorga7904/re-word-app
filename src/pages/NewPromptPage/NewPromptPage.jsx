@@ -73,9 +73,7 @@ export default function NewPromptPage() {
               <h6>Ask me How!</h6>
               <br />
               {/* if truthy, displays value. Else displays... */}
-              <p>{
-              loading ?
-              <Spinner animation="grow" /> : responseContent || '( ⌐▨_▨)'}</p>
+              <p>{loading ? <Spinner animation="grow" /> : responseContent || '( ⌐▨_▨)'}</p>
             </div>
           {/* invokes handleSumbit function */}
           <Form onSubmit={handleSubmit}>

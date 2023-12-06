@@ -50,6 +50,7 @@ const ExpendableText = ({ maxHeight, children }) => {
 };
 export default function PromptHistoryPage() {
   const [prompts, setPrompts] = useState([]);
+  const [promptTitle, setPromptTitle] = useState('')
 
   useEffect(() => {
     // Fetch saved prompts when the component mounts
@@ -88,7 +89,28 @@ export default function PromptHistoryPage() {
     }
 };
 
+const handlePromptTitleChange = (e) => {
+  setPromptTitle(e.target.value.toUpperCase())
+}
 
+const updatePromptTitle = async (promptId) => {
+  try {
+  const currentUser = getUser()
+  const token = await getToken()
+
+  await axios.put(`${HISTORY_API_URL}/${currentUser._id}/${promptId}`, 
+  { promptTitle }, 
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  setPromptTitle('')
+  getHistory()
+} catch (error) {
+  console.error('Error updating prompt title:', error);
+}
+}
 
   return (
     <Container className='prompt-page'>
@@ -111,8 +133,20 @@ export default function PromptHistoryPage() {
                     <Card.Body key={prompt._id}>
                       <li>
                         <Card.Title>
-                          <h3>Your Title</h3>
+                        <h3>
+                            <input
+                            type="text"
+                            value={promptTitle}
+                            onChange={handlePromptTitleChange}
+                            placeholder="Change Title"
+                            />
+                            <Button variant='dark' onClick={() => updatePromptTitle(prompt._id)}>Save</Button>
+                          </h3>
                         </Card.Title>
+                        <br />
+                        <strong>{prompt.title}</strong>
+                        <br />
+                        <br />
                         <ExpendableText maxHeight={95}>
                           <strong>Prompt:</strong> {prompt.prompt}<br />
                         </ExpendableText>

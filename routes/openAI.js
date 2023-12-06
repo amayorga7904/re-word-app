@@ -7,6 +7,7 @@ router.post('/', ensureLoggedIn, openAICtrl.main)
 //localhost:3000/api/openAi/history
 router.get('/history/:id', ensureLoggedIn, openAICtrl.history);
 
+router.put('/history/:userId/:promptId', ensureLoggedIn, openAICtrl.updatePromptTitle)
 
 module.exports = router
 
