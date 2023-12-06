@@ -16,17 +16,18 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <>
-      <Navbar key={'sm'} expand={'sm'} className="bg-body-tertiary mb-3">
+      <Navbar key={false} expand={false} className="bg-body-tertiary mb-3">
         <Container fluid>
-          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${'sm'}`} />
+          <Navbar.Brand>Be a Pro Without Being a Pro</Navbar.Brand>
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${false}`} />
           <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${'sm'}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${'sm'}`}
+              id={`offcanvasNavbar-expand-${false}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${false}`}
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${'sm'}`}>
-                  Offcanvas
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${false}`}>
+                  WORD-IQ
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
