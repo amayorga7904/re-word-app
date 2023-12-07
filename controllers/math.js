@@ -3,11 +3,6 @@ const MathOpenAIModel = require('../models/mathAI')
 const User = require('../models/user')
 
 
-module.exports = {
-    explainMath, 
-    mathHistory,
-    updateMathTitle
-}
 
 const mathOpenai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -74,3 +69,9 @@ const updateMathTitle = async(req, res) => {
     }
 }
 
+
+module.exports = {
+    explainMath, 
+    mathHistory,
+    updateMathTitle
+}

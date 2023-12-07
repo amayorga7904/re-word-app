@@ -3,11 +3,6 @@ const CodeOpenAIModel = require('../models/codeAI')
 const User = require('../models/user')
 
 
-module.exports = {
-    explainCode, 
-    codeHistory,
-    updateTitle
-}
 
 const codeOpenai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -74,3 +69,9 @@ const updateTitle = async(req, res) => {
       }
     }
 
+
+    module.exports = {
+        explainCode, 
+        codeHistory,
+        updateTitle
+    }
