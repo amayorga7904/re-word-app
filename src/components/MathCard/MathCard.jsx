@@ -1,5 +1,5 @@
-import { ExpendableText } from "../../pages/HistoryHelper"
-import { CardGroup, Card, Row, Col, Button } from "react-bootstrap";
+import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
+import { ExpendableText } from '../../pages/HistoryHelper'
 
 export default function MathCard({ maths, mathTitle, handleMathTitleChange, updateMathTitle }) {
   return (
@@ -16,12 +16,17 @@ export default function MathCard({ maths, mathTitle, handleMathTitleChange, upda
                         <Card.Title>
                           <h3>
                             <input
-                            type="text"
-                            value={mathTitle}
-                            onChange={handleMathTitleChange}
-                            placeholder="Change Title"
+                              type='text'
+                              value={mathTitle}
+                              onChange={handleMathTitleChange}
+                              placeholder='Change Title'
                             />
-                            <Button variant='dark' onClick={() => updateMathTitle(math._id)}>Save</Button>
+                            <Button 
+                              variant='dark' 
+                              onClick={() => updateMathTitle(math._id)}
+                            >
+                              Save
+                            </Button>
                           </h3>
                         </Card.Title>
                         <br />
@@ -34,7 +39,6 @@ export default function MathCard({ maths, mathTitle, handleMathTitleChange, upda
                         <ExpendableText maxHeight={95}>
                           <strong>Explanation:</strong> {math.output}<br />
                         </ExpendableText>
-                        {/* emphasize */}
                         <em>Date: {new Date(math.timestamp).toLocaleString()}</em>
                         <p>________________________</p>
                       </li>

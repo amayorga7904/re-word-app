@@ -1,19 +1,19 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
-import React, { useState } from "react";
-import { getToken } from '../../utilities/users-service';
-import { getUser } from '../../utilities/users-service';
+import { Container, Row, Col, Button } from "react-bootstrap"
+import CodeCard from "../../components/CodeCard/CodeCard"
+import { getToken } from '../../utilities/users-service'
+import { getUser } from '../../utilities/users-service'
+import React, { useState } from "react"
 import './CodeHistory.css'
-import axios from "axios";
-import CodeCard from "../../components/CodeCard/CodeCard";
+import axios from "axios"
 
 const CODE_HISTORY_API_URL = 'http://localhost:3000/api/codes/history'
 
 
 const CodeHistory = () => {
-    const [codes, setCodes] = useState([]);
-    const [title, setTitle] = useState('')
+  const [codes, setCodes] = useState([])
+  const [title, setTitle] = useState('')
   
-    console.log(codes)
+  console.log(codes)
 
   const getCodeHistory = async () => {
     try {
@@ -36,9 +36,9 @@ const CodeHistory = () => {
 
   const updateCodeTitle = async (codeId) => {
     try {
-      const currentCoder = getUser();
-      const codeToken = await getToken();
-      // Update the title for the specific code
+      const currentCoder = getUser()
+      const codeToken = await getToken()
+
       await axios.put(
         `${CODE_HISTORY_API_URL}/${currentCoder._id}/${codeId}`,
         { title },
@@ -47,18 +47,17 @@ const CodeHistory = () => {
             Authorization: `Bearer ${codeToken}`,
           },
         }
-      );
+      )
       setTitle('')
-      // Refresh the code history after updating the title
-      getCodeHistory();
+      getCodeHistory()
     } catch (error) {
-      console.error('Error updating code title:', error);
+      console.error('Error updating code title:', error)
     }
-  };
+  }
 
   const handleTitleChange = (e) => {
-    setTitle(e.target.value.toUpperCase());
-  };
+    setTitle(e.target.value.toUpperCase())
+  }
 
   return (
     <Container className="code-history-page">
@@ -73,11 +72,16 @@ const CodeHistory = () => {
         <br />
         <br />
       </Row>
-      <CodeCard codes={codes} title={title} updateCodeTitle={updateCodeTitle} handleTitleChange={handleTitleChange} />
+      <CodeCard 
+      codes={codes} 
+      title={title} 
+      updateCodeTitle={updateCodeTitle} 
+      
+      handleTitleChange={handleTitleChange} />
       <br />
       <br />
     </Container>
-  );
+  )
 }
 
 

@@ -1,4 +1,4 @@
-import { Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap'
 
 export default function CodeLoader({ loadingArea, explanationContent }) {
   return (
@@ -6,7 +6,15 @@ export default function CodeLoader({ loadingArea, explanationContent }) {
         <h3>Explain Code like a Pro!</h3>
         <h6>Ask me How!</h6>
         <br />
-        <p>{loadingArea ? <Spinner animation="grow" /> : explanationContent || 'ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ'}</p>
+        <p>
+          {
+            loadingArea ? 
+            <Spinner 
+            animation='grow'
+            /> : 
+            explanationContent || 'ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ' 
+          }
+        </p>
     </div>
   )
 }

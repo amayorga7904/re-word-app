@@ -1,5 +1,5 @@
-import { CardGroup, Card, Row, Col, Button } from "react-bootstrap";
-import { ExpendableText } from "../../pages/HistoryHelper";
+import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
+import { ExpendableText } from '../../pages/HistoryHelper'
 
 export default function PromptCard({ prompts, promptTitle, handlePromptTitleChange, updatePromptTitle }) {
   return (
@@ -14,14 +14,19 @@ export default function PromptCard({ prompts, promptTitle, handlePromptTitleChan
                 <Card.Body key={prompt._id}>
                   <li>
                     <Card.Title>
-                    <h3>
+                      <h3>
                         <input
-                        type="text"
-                        value={promptTitle}
-                        onChange={handlePromptTitleChange}
-                        placeholder="Change Title"
+                          type='text'
+                          value={promptTitle}
+                          onChange={handlePromptTitleChange}
+                          placeholder='Change Title'
                         />
-                        <Button variant='dark' onClick={() => updatePromptTitle(prompt._id)}>Save</Button>
+                        <Button 
+                          variant='dark' 
+                          onClick={() => updatePromptTitle(prompt._id)}
+                        >
+                          Save
+                        </Button>
                       </h3>
                     </Card.Title>
                     <br />

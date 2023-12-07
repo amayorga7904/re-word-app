@@ -1,5 +1,5 @@
-import { ExpendableText } from "../../pages/HistoryHelper"; 
-import { CardGroup, Card, Row, Col, Button } from "react-bootstrap";
+import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
+import { ExpendableText } from '../../pages/HistoryHelper'
 
 export default function CodeCard({ codes, title, updateCodeTitle, handleTitleChange }) {
 
@@ -17,15 +17,16 @@ export default function CodeCard({ codes, title, updateCodeTitle, handleTitleCha
                     <Card.Title>
                       <h3>
                         <input
-                        type="text"
-                        value={title}
-                        onChange={handleTitleChange}
-                        placeholder="Change Title"
+                          type='text'
+                          value={title}
+                          onChange={handleTitleChange}
+                          placeholder='Change Title'
                         />
                         <Button 
-                        variant='dark' 
-                        onClick={() => updateCodeTitle(code._id)}>
-                        Save
+                          variant='dark' 
+                          onClick={() => updateCodeTitle(code._id)}
+                        >
+                          Save
                         </Button>
                       </h3>
                     </Card.Title>

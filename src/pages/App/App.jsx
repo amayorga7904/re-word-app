@@ -1,18 +1,18 @@
-import PromptHistoryPage from '../PromptHistoryPage/PromptHistoryPage';
-import NewPromptPage from '../NewPromptPage/NewPromptPage';
-import { getUser } from '../../utilities/users-service';
-import CodeHistory from '../CodeHistory/CodeHistory';
-import NewCodePage from '../NewCodePage/NewCodePage';
-import MathHistory from '../MathHistory/MathHistory';
-import NewMathPage from '../NewMathPage/NewMathPage';
-import NavBar from '../../components/NavBar/NavBar';
-import { Routes, Route } from 'react-router-dom';
-import AuthPage from '../AuthPage/AuthPage';
-import { useState } from 'react';
-import './App.css';
+import PromptHistoryPage from '../PromptHistoryPage/PromptHistoryPage'
+import NewPromptPage from '../NewPromptPage/NewPromptPage'
+import { getUser } from '../../utilities/users-service'
+import CodeHistory from '../CodeHistory/CodeHistory'
+import NewCodePage from '../NewCodePage/NewCodePage'
+import MathHistory from '../MathHistory/MathHistory'
+import NewMathPage from '../NewMathPage/NewMathPage'
+import NavBar from '../../components/NavBar/NavBar'
+import { Routes, Route } from 'react-router-dom'
+import AuthPage from '../AuthPage/AuthPage'
+import { useState } from 'react'
+import './App.css'
 
 const App = () => {
-  const [user, setUser] = useState(getUser());
+  const [user, setUser] = useState(getUser())
   
 
   return (
@@ -35,7 +35,7 @@ const App = () => {
           <AuthPage setUser={setUser} />
       }
     </main>
-  );
+  )
 }
 
 export default App
