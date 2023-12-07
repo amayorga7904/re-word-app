@@ -10,15 +10,16 @@ const openai = new OpenAI({
 
 const main = async(req, res) => {
     const { prompt } = req.body
+    const promptData = [{
+        role: 'system',
+        content: 'The objective is to provide a more formal and sophisticated tone to the given text.',
+    }, {
+        role: 'user',
+        content: prompt,
+    }]
     try {
         const completion = await openai.chat.completions.create({
-            messages: [{
-                role: 'system',
-                content: 'The objective is to provide a more formal and sophisticated tone to the given text.',
-            }, {
-                role: 'user',
-                content: prompt,
-            }],
+            messages: promptData,
             model: 'gpt-3.5-turbo',
         })
         if (completion && completion.choices && completion.choices.length > 0) {

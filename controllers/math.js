@@ -10,15 +10,16 @@ const mathOpenai = new OpenAI({
 
 const explainMath = async(req, res) => {
     const { math } = req.body
+    const mathData = [{
+        role: 'system',
+        content: 'You will be provided with a mathematical equation, and your task is to explain it in a detailed way, and give steps on how to solve it.'
+    }, {
+        role: 'user',
+        content: math,
+    }]
     try {
         const mathCompletion = await mathOpenai.chat.completions.create({
-            messages: [{
-                role: 'system',
-                content: 'You will be provided with a mathematical equation, and your task is to explain it in a detailed way, and give steps on how to solve it.'
-            }, {
-                role: 'user',
-                content: math,
-            }],
+            messages: mathData,
             model: 'gpt-3.5-turbo',
         })
         if (mathCompletion && mathCompletion.choices && mathCompletion.choices.length > 0) {

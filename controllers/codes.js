@@ -10,15 +10,16 @@ const codeOpenai = new OpenAI({
 
 const explainCode = async(req, res) => {
     const { code } = req.body
+    const codeData = [{
+        role: 'system',
+        content: 'You will be provided with a piece of code, and your task is to explain it in a concise way.'
+    }, {
+        role: 'user',
+        content: code,
+    }]
     try {
         const codeCompletion = await codeOpenai.chat.completions.create({
-            messages: [{
-                role: 'system',
-                content: 'You will be provided with a piece of code, and your task is to explain it in a concise way.'
-            }, {
-                role: 'user',
-                content: code,
-            }],
+            messages: codeData,
             model: 'gpt-3.5-turbo',
         })
         if (codeCompletion && codeCompletion.choices && codeCompletion.choices.length > 0) {
