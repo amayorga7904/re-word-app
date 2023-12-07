@@ -39,13 +39,7 @@ const NewCodePage = () => {
           console.error('Error: Unexpected reply structure');
           setExplanationContent('Error occurred');
         }
-              // if (reply.data.choices && reply.data.choices.length > 0) {
-              //   setExplanationContent(reply.data.choices[0].message.content);
-              // } else {
-              //   // Handle the case when choices array is empty or undefined
-              //   console.error('Error: Unexpected reply structure');
-              //   setExplanationContent('Error occurred');
-              // }
+
         //error handling
       } catch (error) {
         console.error('Error:', error)

@@ -3,17 +3,17 @@ import { createContext, useContext, useState } from 'react';
 
 const OpenAIMathContext = createContext();
 
-export const useCodeOpenAI = () => useContext(OpenAIMathContext);
+export const useMathOpenAI = () => useContext(OpenAIMathContext);
 
-export const CodeOpenAIProvider = ({ children }) => {
-  const [replies, setReplies] = useState([]);
+export const MathOpenAIProvider = ({ children }) => {
+  const [outputs, setOutputs] = useState([]);
 
-  const addReply = (reply) => {
-    setReplies((prevReplies) => [...prevReplies, reply]);
+  const addOutput = (output) => {
+    setOutputs((prevOutputs) => [...prevOutputs, output]);
   };
 
   return (
-    <OpenAIMathContext.Provider value={{ replies, addReply }}>
+    <OpenAIMathContext.Provider value={{ outputs, addOutput }}>
       {children}
     </OpenAIMathContext.Provider>
   );

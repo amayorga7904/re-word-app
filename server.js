@@ -36,7 +36,7 @@ app.use('/api/openAi', openAIRouter)
 const codesRouter = require('./routes/codes')
 app.use('/api/codes', codesRouter)
 
-const mathRouter = require('./routes/codes')
+const mathRouter = require('./routes/math')
 app.use('/api/math', mathRouter)
 
 // The following "catch all" route (note the *) is necessary

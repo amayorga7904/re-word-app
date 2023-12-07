@@ -7,16 +7,19 @@ import { OpenAIProvider } from './pages/PromptHistoryPage/OpenAIAPI';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CodeOpenAIProvider } from './pages/CodeHistory/CodeAIAPI';
 import "typeface-roboto";
+import { MathOpenAIProvider } from './pages/MathHistory/MathAIAPI';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <CodeOpenAIProvider>
-        <OpenAIProvider>
-          <App />
-        </OpenAIProvider>
-      </CodeOpenAIProvider>
+      <MathOpenAIProvider>
+        <CodeOpenAIProvider>
+          <OpenAIProvider>
+            <App />
+          </OpenAIProvider>
+        </CodeOpenAIProvider>
+      </MathOpenAIProvider>
     </Router>
   </React.StrictMode>
 );

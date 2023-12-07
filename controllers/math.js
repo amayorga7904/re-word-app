@@ -14,10 +14,10 @@ const explainMath = async(req, res) => {
     const { math } = req.body
     try {
         //sends a request to the OpenAI API to generate completions based on a chat conversation
-        const codeCompletion = await mathOpenai.chat.completions.create({
+        const mathCompletion = await mathOpenai.chat.completions.create({
             messages: [{
                 role: "system",
-                content: "You will be provided with a mathematical equation, and your task is to explain it in a concise way."
+                content: "You will be provided with a mathematical equation, and your task is to explain it in a detailed way, and give steps on how to solve it."
             }, {
                 //inputs the user message that is extracted from 
                 //req.body.math
@@ -26,16 +26,16 @@ const explainMath = async(req, res) => {
             }],
             model: "gpt-3.5-turbo",
         })
-        console.log('Code Completion:', codeCompletion);
+        console.log('Math Completion:', mathCompletion);
         //sends first JSON response to client from OpenAI
-        if (codeCompletion && codeCompletion.choices && codeCompletion.choices.length > 0) {
-            const explanationContent = codeCompletion.choices[0].message.content;
+        if (mathCompletion && mathCompletion.choices && mathCompletion.choices.length > 0) {
+            const outputContent = mathCompletion.choices[0].message.content;
 
             // Save to MongoDB
-            const openAIRecord = new CodeOpenAIModel({ user: req.user._id, math, reply: explanationContent });
+            const openAIRecord = new MathOpenAIModel({ user: req.user._id, math, output: outputContent });
             await openAIRecord.save();
             // sends first JSON response to the client from OpenAI
-            res.json(codeCompletion.choices[0]);
+            res.json(mathCompletion.choices[0]);
         } 
     } catch (error) {
         console.error('Error:', error)
@@ -45,12 +45,12 @@ const explainMath = async(req, res) => {
 
 const mathHistory = async(req, res) => {
     try {
-        const codeUserId = req.user._id;
-        const codes = await CodeOpenAIModel.find({ user: codeUserId }).sort({ timestamp: -1 });
-        console.log('evan is the awesomest', codes)
-        res.status(200).json(codes);
+        const mathUserId = req.user._id;
+        const maths = await MathOpenAIModel.find({ user: mathUserId }).sort({ timestamp: -1 });
+        console.log('evan is the awesomest', maths)
+        res.status(200).json(maths);
     } catch (error) {
-        console.error('Error getting codes:', error);
+        console.error('Error getting maths:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
@@ -58,8 +58,8 @@ const mathHistory = async(req, res) => {
 const updateMathTitle = async(req, res) => {
     try {
         const userId = req.params.userId;
-        const codeId = req.params.codeId;
-        const newTitle = req.body.title; // Make sure the request body contains the 'title' field
+        const mathId = req.params.mathId;
+        const newMathTitle = req.body.mathTitle; // Make sure the request body contains the 'title' field
     
         // Check if the user and math exist, and update the title
         // Your actual implementation may vary based on your database structure and ORM
@@ -68,12 +68,12 @@ const updateMathTitle = async(req, res) => {
           return res.status(404).json({ error: 'User not found' });
         }
     
-        const math = await CodeOpenAIModel.findById(codeId);
+        const math = await MathOpenAIModel.findById(mathId);
         if (!math) {
           return res.status(404).json({ error: 'Code not found' });
         }
         // Update the math title
-        math.title = newTitle;
+        math.title = newMathTitle;
         await math.save();
     
         // Respond with success

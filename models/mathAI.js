@@ -7,8 +7,8 @@ const mathOpenAISchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    code: String,
-    reply: String,
+    math: String,
+    output: String,
     timestamp: { type: Date, default: Date.now }
 })
 

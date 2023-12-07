@@ -1,88 +1,87 @@
 import { Container, CardGroup, Card, Row, Col, Button } from "react-bootstrap";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getToken } from '../../utilities/users-service';
 import { getUser } from '../../utilities/users-service';
 import { ExpendableText } from '../HistoryHelper'
-import './CodeHistory.css'
 import axios from "axios";
 
-const CODE_HISTORY_API_URL = 'http://localhost:3000/api/math/history'
+const MATH_HISTORY_API_URL = 'http://localhost:3000/api/math/history'
 
 
 const MathHistory = () => {
-    const [codes, setCodes] = useState([]);
-    const [title, setTitle] = useState('')
+    const [maths, setMaths] = useState([]);
+    const [mathTitle, setMathTitle] = useState('')
   
     useEffect(() => {
-      // Fetch saved codes when the component mounts
-      const fetchCodes = async () => {
+      // Fetch saved maths when the component mounts
+      const fetchMathEquations = async () => {
         try {
-          const reply = await axios.get(CODE_HISTORY_API_URL);
-          console.log(reply)
-          setCodes(reply.data);
+          const output = await axios.get(MATH_HISTORY_API_URL);
+          console.log(output)
+          setMaths(output.data);
   
         } catch (error) {
-          console.error('Error fetching codes:', error);
+          console.error('Error fetching maths:', error);
         }
       };
   
-      fetchCodes();
+      fetchMathEquations();
     }, []);
   
-    console.log(codes)
+    console.log('fight night at my place', maths)
 
-  const getCodeHistory = async () => {
+  const getMathHistory = async () => {
     try {
-      const currentCoder = getUser()
-      if (currentCoder) {
-        const codeToken = await getToken()
-        const reply = await axios.get(`${CODE_HISTORY_API_URL}/${currentCoder._id}`,  {
+      const currentMather = getUser()
+      if (currentMather) {
+        const mathToken = await getToken()
+        const output = await axios.get(`${MATH_HISTORY_API_URL}/${currentMather._id}`,  {
           headers: {
-            Authorization: `Bearer ${codeToken}`,
+            Authorization: `Bearer ${mathToken}`,
           }
         })
-        setCodes(reply.data)
+        setMaths(output.data)
       } else {
-        console.log('Coder not defined')
+        console.log('Mather not defined')
       }
     } catch (error) {
-      console.log('Error fetching codes:', error)
+      console.log('Error fetching maths:', error)
     }
   }
   
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value.toUpperCase());
+  const handleMathTitleChange = (e) => {
+    setMathTitle(e.target.value.toUpperCase());
   };
 
-  const updateCodeTitle = async (codeId) => {
+  const updateMathTitle = async (mathId) => {
     try {
-      const currentCoder = getUser();
-      const codeToken = await getToken();
-      console.log('Updated Title:', title);
-      // Update the title for the specific code
+      const currentMather = getUser();
+      const mathToken = await getToken();
+      console.log('Updated Title:', mathTitle);
+      // Update the mathTitle for the specific math
       await axios.put(
-        `${CODE_HISTORY_API_URL}/${currentCoder._id}/${codeId}`,
-        { title },
+        `${MATH_HISTORY_API_URL}/${currentMather._id}/${mathId}`,
+        { mathTitle },
         {
           headers: {
-            Authorization: `Bearer ${codeToken}`,
+            Authorization: `Bearer ${mathToken}`,
           },
         }
       );
-      setTitle('')
-      // Refresh the code history after updating the title
-      getCodeHistory();
+      setMathTitle('')
+      // Refresh the math history after updating the mathTitle
+      getMathHistory();
     } catch (error) {
-      console.error('Error updating code title:', error);
+      console.error('Error updating math mathTitle:', error);
     }
   };
 
 
   return (
-    <Container className="code-history-page">
+    <Container className="math-history-page">
       <Row>
         <Col>
-          <Button variant='dark' onClick={getCodeHistory}>
+          <Button variant='dark' onClick={getMathHistory}>
             Get History</Button>
         </Col>
         <br />
@@ -93,34 +92,34 @@ const MathHistory = () => {
           <Row>
             <Col>
               <h1>Math History</h1>
-              {Array.isArray(codes) && codes.length > 0 ? (
+              {Array.isArray(maths) && maths.length > 0 ? (
                 <ul>
-                  {codes.map((code) => (
-                    <Card.Body key={code._id}>
+                  {maths.map((math) => (
+                    <Card.Body key={math._id}>
                       <li>
                         <Card.Title>
                           <h3>
                             <input
                             type="text"
-                            value={title}
-                            onChange={handleTitleChange}
+                            value={mathTitle}
+                            onChange={handleMathTitleChange}
                             placeholder="Change Title"
                             />
-                            <Button variant='dark' onClick={() => updateCodeTitle(code._id)}>Save</Button>
+                            <Button variant='dark' onClick={() => updateMathTitle(math._id)}>Save</Button>
                           </h3>
                         </Card.Title>
                         <br />
-                        <strong>{code.title}</strong>
+                        <strong>{math.title}</strong>
                         <br />
                         <br />
                         <ExpendableText maxHeight={95}>
-                          <strong>Code:</strong> {code.code}<br />
+                          <strong>Equation:</strong> {math.math}<br />
                         </ExpendableText>
                         <ExpendableText maxHeight={95}>
-                          <strong>Explanation:</strong> {code.reply}<br />
+                          <strong>Explanation:</strong> {math.output}<br />
                         </ExpendableText>
                         {/* emphasize */}
-                        <em>Timestamp: {new Date(code.timestamp).toLocaleString()}</em>
+                        <em>Timestamp: {new Date(math.timestamp).toLocaleString()}</em>
                         <p>________________________</p>
                       </li>
                     </Card.Body>

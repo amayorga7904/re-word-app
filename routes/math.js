@@ -7,6 +7,6 @@ router.post('/', ensureLoggedIn, mathCtrl.explainMath)
 //localhost:3000/api/codes/history
 router.get('/history/:id', ensureLoggedIn, mathCtrl.mathHistory)
 
-router.put('/history/:userId/:codeId', ensureLoggedIn, mathCtrl.updateMathTitle)
+router.put('/history/:userId/:mathId', ensureLoggedIn, mathCtrl.updateMathTitle)
 
 module.exports = router

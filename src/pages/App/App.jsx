@@ -3,6 +3,8 @@ import NewPromptPage from '../NewPromptPage/NewPromptPage';
 import { getUser } from '../../utilities/users-service';
 import CodeHistory from '../CodeHistory/CodeHistory';
 import NewCodePage from '../NewCodePage/NewCodePage';
+import MathHistory from '../MathHistory/MathHistory';
+import NewMathPage from '../NewMathPage/NewMathPage';
 import NavBar from '../../components/NavBar/NavBar';
 import { Routes, Route } from 'react-router-dom';
 import AuthPage from '../AuthPage/AuthPage';
@@ -25,8 +27,8 @@ const App = () => {
               <Route path="/api/openAi/history" element={<PromptHistoryPage />} />
               <Route path="/api/codes" element={<NewCodePage />} />
               <Route path="/api/codes/history" element={<CodeHistory />} />
-              <Route path="/api/math" element={<NewCodePage />} />
-              <Route path="/api/math/history" element={<CodeHistory />} />
+              <Route path="/api/math" element={<NewMathPage />} />
+              <Route path="/api/math/history" element={<MathHistory />} />
             </Routes>
           </>
           :
