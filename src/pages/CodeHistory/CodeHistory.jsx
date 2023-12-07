@@ -1,10 +1,10 @@
-import { Container, CardGroup, Card, Row, Col, Button } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import React, { useState } from "react";
 import { getToken } from '../../utilities/users-service';
 import { getUser } from '../../utilities/users-service';
-import { ExpendableText } from '../HistoryHelper'
 import './CodeHistory.css'
 import axios from "axios";
+import CodeCard from "../../components/CodeCard/CodeCard";
 
 const CODE_HISTORY_API_URL = 'http://localhost:3000/api/codes/history'
 
@@ -33,16 +33,11 @@ const CodeHistory = () => {
       console.log('Error fetching codes:', error)
     }
   }
-  
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value.toUpperCase());
-  };
 
   const updateCodeTitle = async (codeId) => {
     try {
       const currentCoder = getUser();
       const codeToken = await getToken();
-      console.log('Updated Title:', title);
       // Update the title for the specific code
       await axios.put(
         `${CODE_HISTORY_API_URL}/${currentCoder._id}/${codeId}`,
@@ -61,62 +56,24 @@ const CodeHistory = () => {
     }
   };
 
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value.toUpperCase());
+  };
 
   return (
     <Container className="code-history-page">
       <Row>
         <Col>
-          <Button variant='dark' onClick={getCodeHistory}>
-            Get History</Button>
+          <Button 
+          variant='dark' 
+          onClick={getCodeHistory}>
+          Get History
+          </Button>
         </Col>
         <br />
         <br />
       </Row>
-      <CardGroup>
-        <Card>
-          <Row>
-            <Col>
-              <h1>Code History</h1>
-              {Array.isArray(codes) && codes.length > 0 ? (
-                <ul>
-                  {codes.map((code) => (
-                    <Card.Body key={code._id}>
-                      <li>
-                        <Card.Title>
-                          <h3>
-                            <input
-                            type="text"
-                            value={title}
-                            onChange={handleTitleChange}
-                            placeholder="Change Title"
-                            />
-                            <Button variant='dark' onClick={() => updateCodeTitle(code._id)}>Save</Button>
-                          </h3>
-                        </Card.Title>
-                        <br />
-                        <strong>{code.title}</strong>
-                        <br />
-                        <br />
-                        <ExpendableText maxHeight={95}>
-                          <strong>Code:</strong> {code.code}<br />
-                        </ExpendableText>
-                        <ExpendableText maxHeight={95}>
-                          <strong>Explanation:</strong> {code.reply}<br />
-                        </ExpendableText>
-                        {/* emphasize */}
-                        <em>Timestamp: {new Date(code.timestamp).toLocaleString()}</em>
-                        <p>________________________</p>
-                      </li>
-                    </Card.Body>
-                  ))}
-                </ul>
-              ) : (
-                <p>Your Code will be Seen Here</p>
-              )}
-            </Col>
-          </Row>
-        </Card>
-      </CardGroup>
+      <CodeCard codes={codes} title={title} updateCodeTitle={updateCodeTitle} handleTitleChange={handleTitleChange} />
       <br />
       <br />
     </Container>
