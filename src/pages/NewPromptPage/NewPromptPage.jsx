@@ -4,6 +4,8 @@ import { useOpenAI } from "../PromptHistoryPage/OpenAIAPI"
 import { getToken } from "../../utilities/users-service";
 import React, { useState } from "react"
 import axios from "axios"
+import PromptLoader from '../../components/PromptLoader/PromptLoader';
+import PromptForm from '../../components/PromptForm/PromptForm';
 
 //endpoint for OpenAI API chat completions
 const BASE_URL = '/api/openAi'
@@ -64,29 +66,8 @@ const NewPromptPage = () => {
     <Container className="new-prompt-page">
         <Row>
           <Col sm={8}>
-            <div>
-              <h3>Sound Smarter with the Click of a Button!</h3>
-              <h6>Ask me How!</h6>
-              <br />
-              {/* if truthy, displays value. Else displays... */}
-              <p>{loading ? <Spinner animation="grow" /> : responseContent || '( ⌐▨_▨)'}</p>
-            </div>
-          {/* invokes handleSumbit function */}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group
-              className="mb-6"
-              controlId="exampleForm.ControlTextarea1"
-              //sets prompt state variable
-              value={prompt}
-              onChange={handlePrompt}>
-                <Form.Label>Enter Text You Wish to Rephrase</Form.Label>
-                <Form.Control className='text-area' as="textarea" rows={6} />
-              </Form.Group>
-              <Button variant="dark"
-              type="submit">Submit</Button>
-              <br />
-              <br />
-          </Form>
+            <PromptLoader loading={loading} responseContent={responseContent} />
+            <PromptForm handlePrompt={handlePrompt} handleSubmit={handleSubmit} prompt={prompt} />
           </Col>
         <Col sm={true}>
           <PromptHistoryPage />
