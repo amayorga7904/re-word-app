@@ -1,16 +1,16 @@
-import PromptCard from "../../components/PromptCard/PromptCard"
-import { Container, Row, Col, Button } from "react-bootstrap"
+import PromptCard from '../../components/PromptCard/PromptCard'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import { getToken } from '../../utilities/users-service'
 import { getUser } from '../../utilities/users-service'
-import React, { useState } from "react"
+import React, { useState } from 'react'
 import './PromptHistoryPage.css'
-import axios from "axios"
+import axios from 'axios'
 
 
 const HISTORY_API_URL = 'http://localhost:3000/api/openAi/history'
 
 const PromptHistoryPage = () => {
-  const [prompts, setPrompts] = useState([]);
+  const [prompts, setPrompts] = useState([])
   const [promptTitle, setPromptTitle] = useState('')
 
   console.log(prompts)
@@ -25,7 +25,7 @@ const PromptHistoryPage = () => {
                 Authorization: `Bearer ${token}`,
               },
             })
-            setPrompts(response.data);
+            setPrompts(response.data)
         } else {
             console.error('User not defined')
         }
@@ -61,19 +61,20 @@ const PromptHistoryPage = () => {
       <Row>
         <Col>
           <Button 
-          variant='dark' 
-          onClick={getHistory}>
-          Get History
+            variant='dark' 
+            onClick={getHistory}
+          >
+            Get History
           </Button>
         </Col>
         <br />
         <br />
       </Row>
       <PromptCard 
-      prompts={prompts} 
-      promptTitle={promptTitle} 
-      handlePromptTitleChange={handlePromptTitleChange} 
-      updatePromptTitle={updatePromptTitle} 
+        prompts={prompts} 
+        promptTitle={promptTitle} 
+        handlePromptTitleChange={handlePromptTitleChange} 
+        updatePromptTitle={updatePromptTitle} 
       />
       <br />
       <br />

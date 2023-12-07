@@ -16,19 +16,19 @@ const App = () => {
   
 
   return (
-    <main className="App">
+    <main className='App'>
       { user ?
           <>
             <h1 className='title'>WORD-IQ</h1>
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
-              <Route path="/api/openAi" element={<NewPromptPage />} />
-              <Route path="/api/openAi/history" element={<PromptHistoryPage />} />
-              <Route path="/api/codes" element={<NewCodePage />} />
-              <Route path="/api/codes/history" element={<CodeHistory />} />
-              <Route path="/api/math" element={<NewMathPage />} />
-              <Route path="/api/math/history" element={<MathHistory />} />
+              <Route path='/api/openAi' element={<NewPromptPage />} />
+              <Route path='/api/openAi/history' element={<PromptHistoryPage />} />
+              <Route path='/api/codes' element={<NewCodePage />} />
+              <Route path='/api/codes/history' element={<CodeHistory />} />
+              <Route path='/api/math' element={<NewMathPage />} />
+              <Route path='/api/math/history' element={<MathHistory />} />
             </Routes>
           </>
           :

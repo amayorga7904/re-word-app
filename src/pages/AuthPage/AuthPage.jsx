@@ -8,8 +8,19 @@ const AuthPage = ({ setUser }) => {
   return (
     <main>
       <h1>WORD-IQ</h1>
-      <Button variant='dark' onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'Sign Up'}</Button>
-      { showSignUp ?
+      <Button 
+        variant='dark' 
+        onClick={() => setShowSignUp(!showSignUp)}
+      >
+        {
+        showSignUp ? 
+        'Log In' 
+        : 
+        'Sign Up'
+        }
+        </Button>
+      { 
+        showSignUp ?
           <SignUpForm setUser={setUser} />
           :
           <LoginForm setUser={setUser} />

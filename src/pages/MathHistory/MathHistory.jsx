@@ -1,15 +1,15 @@
-import { Container, Row, Col, Button } from "react-bootstrap"
-import MathCard from "../../components/MathCard/MathCard"
+import { Container, Row, Col, Button } from 'react-bootstrap'
+import MathCard from '../../components/MathCard/MathCard'
 import { getToken } from '../../utilities/users-service'
 import { getUser } from '../../utilities/users-service'
-import React, { useState } from "react"
-import axios from "axios"
+import React, { useState } from 'react'
+import axios from 'axios'
 
 
 const MATH_HISTORY_API_URL = 'http://localhost:3000/api/math/history'
 
 const MathHistory = () => {
-  const [maths, setMaths] = useState([]);
+  const [maths, setMaths] = useState([])
   const [mathTitle, setMathTitle] = useState('')
   
   console.log('fight night at my place', maths)
@@ -52,30 +52,32 @@ const MathHistory = () => {
         }
       )
       setMathTitle('')
-      getMathHistory();
+      getMathHistory()
     } catch (error) {
       console.error('Error updating math mathTitle:', error)
     }
   }
 
   return (
-    <Container className="math-history-page">
+    <Container className='math-history-page'>
       <Row>
         <Col>
           <Button 
-          variant='dark' 
-          onClick={getMathHistory}>
-          Get History
+            variant='dark' 
+            onClick={getMathHistory}
+          >
+            Get History
           </Button>
         </Col>
         <br />
         <br />
       </Row>
       <MathCard 
-      maths={maths} 
-      mathTitle={mathTitle} 
-      handleMathTitleChange={handleMathTitleChange} 
-      updateMathTitle={updateMathTitle} />
+        maths={maths} 
+        mathTitle={mathTitle} 
+        handleMathTitleChange={handleMathTitleChange} 
+        updateMathTitle={updateMathTitle} 
+      />
       <br />
       <br />
     </Container>

@@ -1,10 +1,10 @@
-import { Container, Row, Col, Button } from "react-bootstrap"
-import CodeCard from "../../components/CodeCard/CodeCard"
+import { Container, Row, Col, Button } from 'react-bootstrap'
+import CodeCard from '../../components/CodeCard/CodeCard'
 import { getToken } from '../../utilities/users-service'
 import { getUser } from '../../utilities/users-service'
 import React, { useState } from "react"
 import './CodeHistory.css'
-import axios from "axios"
+import axios from 'axios'
 
 const CODE_HISTORY_API_URL = 'http://localhost:3000/api/codes/history'
 
@@ -64,20 +64,21 @@ const CodeHistory = () => {
       <Row>
         <Col>
           <Button 
-          variant='dark' 
-          onClick={getCodeHistory}>
-          Get History
+            variant='dark' 
+            onClick={getCodeHistory}
+          >
+            Get History
           </Button>
         </Col>
         <br />
         <br />
       </Row>
       <CodeCard 
-      codes={codes} 
-      title={title} 
-      updateCodeTitle={updateCodeTitle} 
-      
-      handleTitleChange={handleTitleChange} />
+        codes={codes} 
+        title={title} 
+        updateCodeTitle={updateCodeTitle} 
+        handleTitleChange={handleTitleChange} 
+      />
       <br />
       <br />
     </Container>

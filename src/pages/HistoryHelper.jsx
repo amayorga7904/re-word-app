@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from "react"
-import { Card, Button } from "react-bootstrap"
+import React, { useRef, useEffect, useState } from 'react'
+import { Card, Button } from 'react-bootstrap'
 
 export const ExpendableText = ({ maxHeight, children }) => {
 
@@ -8,11 +8,11 @@ const MAX_POSSIBLE_HEIGHT = 10000
 const styles = {
   container: {
     width: 300,
-    margin: "0 auto"
+    margin: '0 auto'
   },
   card: {
     borderRadius: 55,
-    padding: "3rem"
+    padding: '3rem'
   }
 }
 
@@ -28,15 +28,26 @@ const styles = {
   }, [maxHeight])
 
   return (
-    <Card.Text as="h4" style={styles.cardText} ref={ref}>
+    <Card.Text as='h4' style={styles.cardText} ref={ref}>
       <div
-        className="inner"
-        style={{ maxHeight: expanded ? MAX_POSSIBLE_HEIGHT : maxHeight }}
+        className='inner'
+        style={
+          { 
+            maxHeight: expanded ? 
+            MAX_POSSIBLE_HEIGHT 
+            : maxHeight 
+          }
+        }
       >
         {children}
       </div>
       {shouldShowExpand && (
-        <Button variant='dark' onClick={() => setExpanded(!expanded)}>Expand</Button>
+        <Button 
+          variant='dark' 
+          onClick={() => setExpanded(!expanded)}
+        >
+          Expand
+        </Button>
       )}
     </Card.Text>
   )

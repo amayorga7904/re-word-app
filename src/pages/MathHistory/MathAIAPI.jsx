@@ -1,20 +1,20 @@
-// Create a new file, e.g., OpenAIMathContext.js
-import { createContext, useContext, useState } from 'react';
 
-const OpenAIMathContext = createContext();
+import { createContext, useContext, useState } from 'react'
 
-export const useMathOpenAI = () => useContext(OpenAIMathContext);
+const OpenAIMathContext = createContext()
+
+export const useMathOpenAI = () => useContext(OpenAIMathContext)
 
 export const MathOpenAIProvider = ({ children }) => {
-  const [outputs, setOutputs] = useState([]);
+  const [outputs, setOutputs] = useState([])
 
   const addOutput = (output) => {
-    setOutputs((prevOutputs) => [...prevOutputs, output]);
-  };
+    setOutputs((prevOutputs) => [...prevOutputs, output])
+  }
 
   return (
     <OpenAIMathContext.Provider value={{ outputs, addOutput }}>
       {children}
     </OpenAIMathContext.Provider>
-  );
-};
+  )
+}

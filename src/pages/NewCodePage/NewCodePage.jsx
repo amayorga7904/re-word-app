@@ -1,12 +1,12 @@
 import CodeLoader from '../../components/CodeLoader/CodeLoader'
 import CodeForm from '../../components/CodeForm/CodeForm'
-import { useCodeOpenAI } from "../CodeHistory/CodeAIAPI" 
-import { getToken } from "../../utilities/users-service"
+import { useCodeOpenAI } from '../CodeHistory/CodeAIAPI' 
+import { getToken } from '../../utilities/users-service'
 import { Row, Col, Container } from 'react-bootstrap'
-import CodeHistory from "../CodeHistory/CodeHistory"
-import React, { useState } from "react"
+import CodeHistory from '../CodeHistory/CodeHistory'
+import React, { useState } from 'react'
 import './NewCodePage.css'
-import axios from "axios"
+import axios from 'axios'
 
 
 const CODE_BASE_URL = 'http://localhost:3000/api/codes'
@@ -50,11 +50,18 @@ const NewCodePage = () => {
       }
 
       return (
-        <Container className="new-code-page">
+        <Container className='new-code-page'>
             <Row>
               <Col sm={8}>
-                <CodeLoader loadingArea={loadingArea} explanationContent={explanationContent} />
-              <CodeForm handleCode={handleCode} handleSubmit={handleSubmit} code={code} />
+                <CodeLoader 
+                  loadingArea={loadingArea} 
+                  explanationContent={explanationContent} 
+                />
+              <CodeForm 
+                handleCode={handleCode} 
+                handleSubmit={handleSubmit} 
+                code={code} 
+              />
             </Col>
             <Col sm={true}>
               <CodeHistory />

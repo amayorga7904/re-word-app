@@ -1,11 +1,11 @@
 import MathLoader from '../../components/MathLoader/MathLoader'
 import MathForm from '../../components/MathForm/MathForm'
 import { useMathOpenAI } from '../MathHistory/MathAIAPI' 
-import { getToken } from "../../utilities/users-service"
+import { getToken } from '../../utilities/users-service'
 import { Row, Col, Container } from 'react-bootstrap'
 import MathHistory from '../MathHistory/MathHistory'
-import React, { useState } from "react"
-import axios from "axios"
+import React, { useState } from 'react'
+import axios from 'axios'
 
 
 const MATH_BASE_URL = 'http://localhost:3000/api/math'
@@ -51,11 +51,18 @@ const NewMathPage = () => {
       }
 
       return (
-        <Container className="new-math-page">
+        <Container className='new-math-page'>
             <Row>
               <Col sm={8}>
-                <MathLoader loadingSpot={loadingSpot} outputContent={outputContent} />
-              <MathForm handleMath={handleMath} handleSubmit={handleSubmit} math={math}/>
+                <MathLoader 
+                  loadingSpot={loadingSpot} 
+                  outputContent={outputContent} 
+                />
+              <MathForm 
+                handleMath={handleMath} 
+                handleSubmit={handleSubmit} 
+                math={math}
+              />
             </Col>
             <Col sm={true}>
               <MathHistory />
