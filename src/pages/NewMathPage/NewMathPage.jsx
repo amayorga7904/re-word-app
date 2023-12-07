@@ -4,8 +4,8 @@ import { getToken } from "../../utilities/users-service";
 import MathHistory from '../MathHistory/MathHistory';
 import React, { useState } from "react"
 import axios from "axios"
-import MathForm from '../MathForm/MathForm';
-import MathLoader from '../MathLoader/MathLoader';
+import MathForm from '../../components/MathForm/MathForm';
+import MathLoader from '../../components/MathLoader/MathLoader';
 
 
 const MATH_BASE_URL = 'http://localhost:3000/api/math'
