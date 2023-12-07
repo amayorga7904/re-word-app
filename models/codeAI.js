@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const codeOpenAISchema = new Schema({
     title: String,
@@ -12,4 +12,4 @@ const codeOpenAISchema = new Schema({
     timestamp: { type: Date, default: Date.now }
 })
 
-module.exports = mongoose.model('CodeOpenAIModel', codeOpenAISchema);
+module.exports = mongoose.model('CodeOpenAIModel', codeOpenAISchema)
