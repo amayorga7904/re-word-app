@@ -35,7 +35,7 @@ export default function PromptCard({ prompts, promptTitle, handlePromptTitleChan
                       <strong>Response:</strong> {prompt.response}<br />
                     </ExpendableText>
                     {/* emphasize */}
-                    <em>Timestamp: {new Date(prompt.timestamp).toLocaleString()}</em>
+                    <em>Date: {new Date(prompt.timestamp).toLocaleString()}</em>
                     <p>________________________</p>
                   </li>
                 </Card.Body>

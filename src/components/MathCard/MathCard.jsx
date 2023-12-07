@@ -35,7 +35,7 @@ export default function MathCard({ maths, mathTitle, handleMathTitleChange, upda
                           <strong>Explanation:</strong> {math.output}<br />
                         </ExpendableText>
                         {/* emphasize */}
-                        <em>Timestamp: {new Date(math.timestamp).toLocaleString()}</em>
+                        <em>Date: {new Date(math.timestamp).toLocaleString()}</em>
                         <p>________________________</p>
                       </li>
                     </Card.Body>
