@@ -1,10 +1,12 @@
-import { Button, Spinner, Form, Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import { useCodeOpenAI } from "../CodeHistory/CodeAIAPI" 
 import { getToken } from "../../utilities/users-service";
 import CodeHistory from "../CodeHistory/CodeHistory"
 import React, { useState } from "react"
 import './NewCodePage.css'
 import axios from "axios"
+import CodeLoader from '../../components/CodeLoader/CodeLoader';
+import CodeForm from '../../components/CodeForm/CodeForm';
 
 
 const CODE_BASE_URL = 'http://localhost:3000/api/codes'
@@ -59,29 +61,8 @@ const NewCodePage = () => {
         <Container className="new-code-page">
             <Row>
               <Col sm={8}>
-                <div>
-                  <h3>Explain Code like a Pro!</h3>
-                  <h6>Ask me How!</h6>
-                  <br />
-                  {/* if truthy, displays value. Else displays... */}
-                  <p>{loadingArea ? <Spinner animation="grow" /> : explanationContent || 'ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿) ᕗ'}</p>
-                </div>
-              {/* invokes handleSumbit function */}
-              <Form onSubmit={handleSubmit}>
-                <Form.Group
-                  className="mb-6"
-                  controlId="exampleForm.ControlTextarea1"
-                  //sets code state variable
-                  value={code}
-                  onChange={handleCode}>
-                  <Form.Label>Enter Code Below</Form.Label>
-                  <Form.Control className='text-area' as="textarea" rows={6} />
-                </Form.Group>
-                  <Button variant="dark"
-                  type="submit">Submit</Button>
-                <br />
-                <br />
-              </Form>
+                <CodeLoader loadingArea={loadingArea} explanationContent={explanationContent} />
+              <CodeForm handleCode={handleCode} handleSubmit={handleSubmit} code={code} />
             </Col>
             <Col sm={true}>
               <CodeHistory />
