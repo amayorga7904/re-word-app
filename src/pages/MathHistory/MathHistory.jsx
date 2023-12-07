@@ -12,22 +12,6 @@ const MathHistory = () => {
     const [maths, setMaths] = useState([]);
     const [mathTitle, setMathTitle] = useState('')
   
-    useEffect(() => {
-      // Fetch saved maths when the component mounts
-      const fetchMathEquations = async () => {
-        try {
-          const output = await axios.get(MATH_HISTORY_API_URL);
-          console.log(output)
-          setMaths(output.data);
-  
-        } catch (error) {
-          console.error('Error fetching maths:', error);
-        }
-      };
-  
-      fetchMathEquations();
-    }, []);
-  
     console.log('fight night at my place', maths)
 
   const getMathHistory = async () => {

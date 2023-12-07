@@ -13,22 +13,6 @@ const CodeHistory = () => {
     const [codes, setCodes] = useState([]);
     const [title, setTitle] = useState('')
   
-    useEffect(() => {
-      // Fetch saved codes when the component mounts
-      const fetchCodes = async () => {
-        try {
-          const reply = await axios.get(CODE_HISTORY_API_URL);
-          console.log(reply)
-          setCodes(reply.data);
-  
-        } catch (error) {
-          console.error('Error fetching codes:', error);
-        }
-      };
-  
-      fetchCodes();
-    }, []);
-  
     console.log(codes)
 
   const getCodeHistory = async () => {

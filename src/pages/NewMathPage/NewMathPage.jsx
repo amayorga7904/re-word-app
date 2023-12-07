@@ -59,7 +59,7 @@ const NewMathPage = () => {
             <Row>
               <Col sm={8}>
                 <div>
-                  <h3>Explain Math like a Boss!</h3>
+                  <h3>Become an Expert in Math!</h3>
                   <h6>Ask me How!</h6>
                   <br />
                   {/* if truthy, displays value. Else displays... */}

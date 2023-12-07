@@ -12,22 +12,6 @@ const PromptHistoryPage = () => {
   const [prompts, setPrompts] = useState([]);
   const [promptTitle, setPromptTitle] = useState('')
 
-  useEffect(() => {
-    // Fetch saved prompts when the component mounts
-    const fetchPrompts = async () => {
-      try {
-        const response = await axios.get(HISTORY_API_URL);
-        console.log('Response Data:', response.data);
-        setPrompts(response.data);
-
-      } catch (error) {
-        console.error('Error fetching prompts:', error);
-      }
-    };
-
-    fetchPrompts();
-  }, []);
-
   console.log(prompts)
   
   const getHistory = async () => {
