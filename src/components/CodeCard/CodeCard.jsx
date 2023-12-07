@@ -22,7 +22,11 @@ export default function CodeCard({ codes, title, updateCodeTitle, handleTitleCha
                         onChange={handleTitleChange}
                         placeholder="Change Title"
                         />
-                        <Button variant='dark' onClick={() => updateCodeTitle(code._id)}>Save</Button>
+                        <Button 
+                        variant='dark' 
+                        onClick={() => updateCodeTitle(code._id)}>
+                        Save
+                        </Button>
                       </h3>
                     </Card.Title>
                     <br />
@@ -35,8 +39,7 @@ export default function CodeCard({ codes, title, updateCodeTitle, handleTitleCha
                     <ExpendableText maxHeight={95}>
                       <strong>Explanation:</strong> {code.reply}<br />
                     </ExpendableText>
-                    {/* emphasize */}
-                    <em>Timestamp: {new Date(code.timestamp).toLocaleString()}</em>
+                    <em>Date: {new Date(code.timestamp).toLocaleString()}</em>
                     <p>________________________</p>
                   </li>
                 </Card.Body>

@@ -1,9 +1,9 @@
-import { Container, CardGroup, Card, Row, Col, Button } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import React, { useState } from "react";
 import { getToken } from '../../utilities/users-service';
 import { getUser } from '../../utilities/users-service';
-import { ExpendableText } from '../HistoryHelper'
 import axios from "axios";
+import MathCard from "../../components/MathCard/MathCard";
 
 const MATH_HISTORY_API_URL = 'http://localhost:3000/api/math/history'
 
@@ -65,57 +65,20 @@ const MathHistory = () => {
     <Container className="math-history-page">
       <Row>
         <Col>
-          <Button variant='dark' onClick={getMathHistory}>
-            Get History</Button>
+          <Button 
+          variant='dark' 
+          onClick={getMathHistory}>
+          Get History
+          </Button>
         </Col>
         <br />
         <br />
       </Row>
-      <CardGroup>
-        <Card>
-          <Row>
-            <Col>
-              <h1>Math History</h1>
-              {Array.isArray(maths) && maths.length > 0 ? (
-                <ul>
-                  {maths.map((math) => (
-                    <Card.Body key={math._id}>
-                      <li>
-                        <Card.Title>
-                          <h3>
-                            <input
-                            type="text"
-                            value={mathTitle}
-                            onChange={handleMathTitleChange}
-                            placeholder="Change Title"
-                            />
-                            <Button variant='dark' onClick={() => updateMathTitle(math._id)}>Save</Button>
-                          </h3>
-                        </Card.Title>
-                        <br />
-                        <strong>{math.title}</strong>
-                        <br />
-                        <br />
-                        <ExpendableText maxHeight={95}>
-                          <strong>Equation:</strong> {math.math}<br />
-                        </ExpendableText>
-                        <ExpendableText maxHeight={95}>
-                          <strong>Explanation:</strong> {math.output}<br />
-                        </ExpendableText>
-                        {/* emphasize */}
-                        <em>Timestamp: {new Date(math.timestamp).toLocaleString()}</em>
-                        <p>________________________</p>
-                      </li>
-                    </Card.Body>
-                  ))}
-                </ul>
-              ) : (
-                <p>Your Math Equations will be Seen Here</p>
-              )}
-            </Col>
-          </Row>
-        </Card>
-      </CardGroup>
+      <MathCard 
+      maths={maths} 
+      mathTitle={mathTitle} 
+      handleMathTitleChange={handleMathTitleChange} 
+      updateMathTitle={updateMathTitle} />
       <br />
       <br />
     </Container>
