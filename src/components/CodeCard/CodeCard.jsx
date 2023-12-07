@@ -3,7 +3,7 @@ import { getUser, getToken } from '../../utilities/users-service'
 import { ExpendableText } from '../../pages/HistoryHelper'
 import axios from 'axios'
 
-const CODE_HISTORY_API_URL = 'http://localhost:3000/api/codes/history'
+const CODE_HISTORY_API_URL = '/api/codes/history'
 
 const CodeCard = ({ codes, title, updateCodeTitle, handleTitleChange, getCodeHistory }) => {
 

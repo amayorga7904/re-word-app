@@ -8,7 +8,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 
-const MATH_BASE_URL = 'http://localhost:3000/api/math'
+const MATH_BASE_URL = '/api/math'
 
 const NewMathPage = () => {
     const { addOutput } = useMathOpenAI()

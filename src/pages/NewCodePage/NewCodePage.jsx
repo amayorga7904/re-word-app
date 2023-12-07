@@ -9,7 +9,7 @@ import './NewCodePage.css'
 import axios from 'axios'
 
 
-const CODE_BASE_URL = 'http://localhost:3000/api/codes'
+const CODE_BASE_URL = '/api/codes'
 
 const NewCodePage = () => {
     const { addReply } = useCodeOpenAI()

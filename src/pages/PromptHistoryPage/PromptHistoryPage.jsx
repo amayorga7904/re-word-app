@@ -7,7 +7,7 @@ import './PromptHistoryPage.css'
 import axios from 'axios'
 
 
-const HISTORY_API_URL = 'http://localhost:3000/api/openAi/history'
+const HISTORY_API_URL = '/api/openAi/history'
 
 const PromptHistoryPage = () => {
   const [prompts, setPrompts] = useState([])

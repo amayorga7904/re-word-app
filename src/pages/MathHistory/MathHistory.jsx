@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 
-const MATH_HISTORY_API_URL = 'http://localhost:3000/api/math/history'
+const MATH_HISTORY_API_URL = '/api/math/history'
 
 const MathHistory = () => {
   const [maths, setMaths] = useState([])

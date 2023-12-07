@@ -6,7 +6,7 @@ import React, { useState } from "react"
 import './CodeHistory.css'
 import axios from 'axios'
 
-const CODE_HISTORY_API_URL = 'http://localhost:3000/api/codes/history'
+const CODE_HISTORY_API_URL = '/api/codes/history'
 
 
 const CodeHistory = () => {
