@@ -1,6 +1,6 @@
 import { Spinner } from 'react-bootstrap'
 
-export default function MathLoader({ loadingSpot, outputContent }) {
+const MathLoader = ({ loadingSpot, outputContent }) => {
   return (
     <div>
         <h3>Become an Expert in Solving Math Problems!</h3>
@@ -18,3 +18,5 @@ export default function MathLoader({ loadingSpot, outputContent }) {
     </div>
   )
 }
+
+export default MathLoader

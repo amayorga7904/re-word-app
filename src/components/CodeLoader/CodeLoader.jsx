@@ -1,6 +1,6 @@
 import { Spinner } from 'react-bootstrap'
 
-export default function CodeLoader({ loadingArea, explanationContent }) {
+const CodeLoader = ({ loadingArea, explanationContent }) => {
   return (
     <div>
         <h3>Explain Code like a Pro!</h3>
@@ -18,3 +18,5 @@ export default function CodeLoader({ loadingArea, explanationContent }) {
     </div>
   )
 }
+
+export default CodeLoader

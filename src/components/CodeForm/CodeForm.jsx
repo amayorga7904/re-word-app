@@ -1,6 +1,6 @@
 import { Button, Form } from 'react-bootstrap'
 
-export default function CodeForm({ handleCode, handleSubmit, code }) {
+const CodeForm = ({ handleCode, handleSubmit, code }) => {
   return (
     <Form onSubmit={handleSubmit}>
         <Form.Group
@@ -27,3 +27,5 @@ export default function CodeForm({ handleCode, handleSubmit, code }) {
     </Form>
   )
 }
+
+export default CodeForm

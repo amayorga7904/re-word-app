@@ -1,6 +1,6 @@
 import { Button, Form } from 'react-bootstrap'
 
-export default function PromptForm({ handlePrompt, handleSubmit, prompt }) {
+const PromptForm = ({ handlePrompt, handleSubmit, prompt }) => {
   return (
     <Form onSubmit={handleSubmit}>
         <Form.Group
@@ -26,3 +26,5 @@ export default function PromptForm({ handlePrompt, handleSubmit, prompt }) {
     </Form>
   )
 }
+
+export default PromptForm

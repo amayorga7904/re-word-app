@@ -1,7 +1,7 @@
 import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
 import { ExpendableText } from '../../pages/HistoryHelper'
 
-export default function CodeCard({ codes, title, updateCodeTitle, handleTitleChange }) {
+const CodeCard = ({ codes, title, updateCodeTitle, handleTitleChange }) => {
 
   return (
   <CardGroup>
@@ -55,3 +55,5 @@ export default function CodeCard({ codes, title, updateCodeTitle, handleTitleCha
   </CardGroup>
   )
 }
+
+export default CodeCard

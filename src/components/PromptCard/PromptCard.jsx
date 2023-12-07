@@ -1,7 +1,7 @@
 import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
 import { ExpendableText } from '../../pages/HistoryHelper'
 
-export default function PromptCard({ prompts, promptTitle, handlePromptTitleChange, updatePromptTitle }) {
+const PromptCard = ({ prompts, promptTitle, handlePromptTitleChange, updatePromptTitle }) => {
   return (
   <CardGroup>
     <Card>
@@ -55,3 +55,5 @@ export default function PromptCard({ prompts, promptTitle, handlePromptTitleChan
   </CardGroup>
   )
 }
+
+export default PromptCard

@@ -1,6 +1,6 @@
 import { Spinner } from 'react-bootstrap'
 
-export default function PromptLoader({ loading, responseContent }) {
+const PromptLoader = ({ loading, responseContent }) => {
   return (
     <div>
         <h3>Sound Smarter with the Click of a Button!</h3>
@@ -18,3 +18,5 @@ export default function PromptLoader({ loading, responseContent }) {
     </div>
   )
 }
+
+export default PromptLoader

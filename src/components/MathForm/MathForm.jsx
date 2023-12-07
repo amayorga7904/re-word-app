@@ -1,6 +1,6 @@
 import { Button, Form } from 'react-bootstrap'
 
-export default function MathForm({ handleMath, handleSubmit, math}) {
+const MathForm = ({ handleMath, handleSubmit, math}) => {
     
   return (
     <Form onSubmit={handleSubmit}>
@@ -28,3 +28,5 @@ export default function MathForm({ handleMath, handleSubmit, math}) {
     </Form>
   )
 }
+
+export default MathForm

@@ -1,7 +1,7 @@
 import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
 import { ExpendableText } from '../../pages/HistoryHelper'
 
-export default function MathCard({ maths, mathTitle, handleMathTitleChange, updateMathTitle }) {
+const MathCard = ({ maths, mathTitle, handleMathTitleChange, updateMathTitle }) => {
   return (
       <CardGroup>
         <Card>
@@ -54,3 +54,5 @@ export default function MathCard({ maths, mathTitle, handleMathTitleChange, upda
       </CardGroup>
   )
 }
+
+export default MathCard
