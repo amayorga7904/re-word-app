@@ -1,7 +1,29 @@
 import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
 import { ExpendableText } from '../../pages/HistoryHelper'
+import { getUser, getToken } from '../../utilities/users-service'
+import axios from 'axios'
 
-const CodeCard = ({ codes, title, updateCodeTitle, handleTitleChange }) => {
+const CODE_HISTORY_API_URL = 'http://localhost:3000/api/codes/history'
+
+const CodeCard = ({ codes, title, updateCodeTitle, handleTitleChange, getCodeHistory }) => {
+
+  const handleDelete = async (codeId) => {
+    try {
+      const currentCoder = getUser()
+      const codeToken = await getToken()
+
+      await axios.delete(`${CODE_HISTORY_API_URL}/${currentCoder._id}/${codeId}`, {
+        headers: {
+          Authorization: `Bearer ${codeToken}`,
+        },
+      })
+  
+      getCodeHistory()
+    } catch (error) {
+      console.error('Error deleting code:', error)
+    }
+  }
+  
 
   return (
   <CardGroup>
@@ -41,7 +63,14 @@ const CodeCard = ({ codes, title, updateCodeTitle, handleTitleChange }) => {
                       <strong>Explanation:</strong> {code.reply}<br />
                     </ExpendableText>
                     <em>Date: {new Date(code.timestamp).toLocaleString()}</em>
-                    <p>________________________</p>
+                    <br />
+                    <Button
+                      variant='dark'
+                      onClick={() => handleDelete(code._id)}
+                    >
+                      Delete
+                    </Button>
+                    <p>_____________________________</p>
                   </li>
                 </Card.Body>
               ))}

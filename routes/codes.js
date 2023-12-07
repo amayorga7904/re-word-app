@@ -9,4 +9,6 @@ router.get('/history/:id', ensureLoggedIn, codesCtrl.codeHistory)
 
 router.put('/history/:userId/:codeId', ensureLoggedIn, codesCtrl.updateTitle)
 
+router.delete('/history/:userId/:codeId', ensureLoggedIn, codesCtrl.delete)
+
 module.exports = router

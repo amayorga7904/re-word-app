@@ -78,6 +78,7 @@ const CodeHistory = () => {
         title={title} 
         updateCodeTitle={updateCodeTitle} 
         handleTitleChange={handleTitleChange} 
+        getCodeHistory={getCodeHistory}
       />
       <br />
       <br />

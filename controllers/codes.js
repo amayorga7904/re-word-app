@@ -71,8 +71,21 @@ const updateTitle = async(req, res) => {
     }
 
 
+    const deleteCode = async (req, res) => {
+        const codeId = req.params.codeId
+        try {
+            const code = await CodeOpenAIModel.findById(codeId)
+            await code.remove()
+            res.status(200).json({ message: 'Code deleted successfully' })
+        } catch (error) {
+            console.error('Error deleting code:', error)
+        }
+    }
+    
+
     module.exports = {
         explainCode, 
         codeHistory,
-        updateTitle
+        updateTitle,
+        delete: deleteCode
     }
