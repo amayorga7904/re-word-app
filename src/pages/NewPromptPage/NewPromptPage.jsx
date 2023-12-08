@@ -1,11 +1,11 @@
-import { Row, Col, Container } from 'react-bootstrap'
 import PromptHistoryPage from '../PromptHistoryPage/PromptHistoryPage'
-import { useOpenAI } from '../PromptHistoryPage/OpenAIAPI'
-import { getToken } from '../../utilities/users-service'
-import React, { useState } from 'react'
-import axios from 'axios'
 import PromptLoader from '../../components/PromptLoader/PromptLoader'
 import PromptForm from '../../components/PromptForm/PromptForm'
+import { useOpenAI } from '../PromptHistoryPage/OpenAIAPI'
+import { getToken } from '../../utilities/users-service'
+import { Row, Col, Container } from 'react-bootstrap'
+import React, { useState } from 'react'
+import axios from 'axios'
 
 
 const BASE_URL = '/api/openAi'

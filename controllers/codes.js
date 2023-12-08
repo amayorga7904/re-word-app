@@ -1,6 +1,5 @@
-const OpenAI = require('openai')
 const CodeOpenAIModel = require('../models/codeAI')
-const User = require('../models/user')
+const OpenAI = require('openai')
 
 
 
@@ -49,17 +48,9 @@ const codeHistory = async(req, res) => {
 
 const updateTitle = async(req, res) => {
     try {
-        const userId = req.params.userId
         const codeId = req.params.codeId
         const newTitle = req.body.title 
-        const user = await User.findById(userId)
-        if (!user) {
-          return res.status(404).json({ error: 'User not found' })
-        }
         const code = await CodeOpenAIModel.findById(codeId)
-        if (!code) {
-          return res.status(404).json({ error: 'Code not found' })
-        }
         code.title = newTitle
         await code.save()
         res.status(200).json({ message: 'Title updated successfully' })

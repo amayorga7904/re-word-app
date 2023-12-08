@@ -1,6 +1,5 @@
-const OpenAI = require('openai')
 const MathOpenAIModel = require('../models/mathAI')
-const User = require('../models/user')
+const OpenAI = require('openai')
 
 
 
@@ -49,17 +48,9 @@ const mathHistory = async(req, res) => {
 
 const updateMathTitle = async(req, res) => {
     try {
-        const userId = req.params.userId
         const mathId = req.params.mathId
         const newMathTitle = req.body.mathTitle 
-        const user = await User.findById(userId)
-        if (!user) {
-          return res.status(404).json({ error: 'User not found' })
-        }
         const math = await MathOpenAIModel.findById(mathId)
-        if (!math) {
-          return res.status(404).json({ error: 'Code not found' })
-        }
         math.title = newMathTitle
         await math.save()
         res.status(200).json({ message: 'Title updated successfully' })

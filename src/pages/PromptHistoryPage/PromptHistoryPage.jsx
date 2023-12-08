@@ -1,7 +1,6 @@
+import { getToken, getUser } from '../../utilities/users-service'
 import PromptCard from '../../components/PromptCard/PromptCard'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import { getToken } from '../../utilities/users-service'
-import { getUser } from '../../utilities/users-service'
 import React, { useState } from 'react'
 import './PromptHistoryPage.css'
 import axios from 'axios'

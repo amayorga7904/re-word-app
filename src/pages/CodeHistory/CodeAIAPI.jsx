@@ -1,4 +1,4 @@
-// Create a new file, e.g., OpenAICodeContext.js
+
 import { createContext, useContext, useState } from 'react';
 
 const OpenAICodeContext = createContext();

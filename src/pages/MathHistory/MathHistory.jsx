@@ -1,7 +1,6 @@
+import { getToken, getUser } from '../../utilities/users-service'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import MathCard from '../../components/MathCard/MathCard'
-import { getToken } from '../../utilities/users-service'
-import { getUser } from '../../utilities/users-service'
 import React, { useState } from 'react'
 import axios from 'axios'
 

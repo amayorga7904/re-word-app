@@ -1,6 +1,5 @@
-const OpenAI = require('openai')
 const OpenAIModel = require('../models/openAI')
-const User = require('../models/user')
+const OpenAI = require('openai')
 
 
 
@@ -52,13 +51,8 @@ const history = async(req, res) => {
 
 const updatePromptTitle = async(req, res) => {
     try {
-        const userId = req.params.userId
         const promptId = req.params.promptId
         const newPromptTitle = req.body.promptTitle
-        const user = await User.findById(userId)
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' })
-          }
         const prompt = await OpenAIModel.findById(promptId)
         prompt.title = newPromptTitle
         await prompt.save()

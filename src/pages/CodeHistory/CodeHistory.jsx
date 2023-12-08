@@ -1,7 +1,6 @@
+import { getToken, getUser } from '../../utilities/users-service'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import CodeCard from '../../components/CodeCard/CodeCard'
-import { getToken } from '../../utilities/users-service'
-import { getUser } from '../../utilities/users-service'
 import React, { useState } from "react"
 import './CodeHistory.css'
 import axios from 'axios'
