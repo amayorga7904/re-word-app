@@ -10,6 +10,7 @@ router.get('/history/:id', ensureLoggedIn, openAICtrl.history);
 router.put('/history/:userId/:promptId', ensureLoggedIn, openAICtrl.updatePromptTitle)
 
 router.delete('/history/:userId/:promptId', ensureLoggedIn, openAICtrl.delete)
+
 module.exports = router
 
 

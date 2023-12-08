@@ -26,9 +26,6 @@ const NewCodePage = () => {
             Authorization: `Bearer ${codeToken}`
           }
         })
- 
-        console.log('API Response:', reply)  
-
         if (reply.data.message && reply.data.message.content) {
           setExplanationContent(reply.data.message.content)
           addReply(reply.data.message.content)

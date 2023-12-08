@@ -26,9 +26,6 @@ const NewMathPage = () => {
             Authorization: `Bearer ${mathToken}`
           }
         })
-
-        console.log('API Response:', output)
-
         if (output.data.message && output.data.message.content) {
           setOutputContent(output.data.message.content)
           addOutput(output.data.message.content)

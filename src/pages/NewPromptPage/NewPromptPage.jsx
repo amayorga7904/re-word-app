@@ -25,10 +25,7 @@ const NewPromptPage = () => {
         headers: {
           Authorization: `Bearer ${token}`
         }
-      })  
-
-      console.log('API Response:', response)    
-
+      })    
       if (response.data.message && response.data.message.content) {
         setResponseContent(response.data.message.content)
         addResponse(response.data.message.content)

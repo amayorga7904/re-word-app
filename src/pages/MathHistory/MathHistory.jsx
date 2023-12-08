@@ -11,8 +11,6 @@ const MATH_HISTORY_API_URL = '/api/math/history'
 const MathHistory = () => {
   const [maths, setMaths] = useState([])
   const [mathTitle, setMathTitle] = useState('')
-  
-  console.log('fight night at my place', maths)
 
   const getMathHistory = async () => {
     try {
@@ -25,11 +23,9 @@ const MathHistory = () => {
           }
         })
         setMaths(output.data)
-      } else {
-        console.log('Mather not defined')
-      }
+      } 
     } catch (error) {
-      console.log('Error fetching maths:', error)
+      console.log(error)
     }
   }
   

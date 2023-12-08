@@ -12,8 +12,6 @@ const HISTORY_API_URL = '/api/openAi/history'
 const PromptHistoryPage = () => {
   const [prompts, setPrompts] = useState([])
   const [promptTitle, setPromptTitle] = useState('')
-
-  console.log(prompts)
   
   const getHistory = async () => {
     try {

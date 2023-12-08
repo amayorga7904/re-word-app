@@ -12,8 +12,6 @@ const CODE_HISTORY_API_URL = '/api/codes/history'
 const CodeHistory = () => {
   const [codes, setCodes] = useState([])
   const [title, setTitle] = useState('')
-  
-  console.log(codes)
 
   const getCodeHistory = async () => {
     try {
@@ -26,9 +24,7 @@ const CodeHistory = () => {
           }
         })
         setCodes(reply.data)
-      } else {
-        console.log('Coder not defined')
-      }
+      } 
     } catch (error) {
       console.log('Error fetching codes:', error)
     }

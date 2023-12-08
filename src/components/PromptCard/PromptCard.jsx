@@ -1,6 +1,6 @@
 import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
-import { ExpendableText } from '../../pages/HistoryHelper'
 import { getUser, getToken } from '../../utilities/users-service' 
+import { ExpendableText } from '../../pages/HistoryHelper'
 import axios from 'axios'
 
 const HISTORY_API_URL = '/api/openAi/history'
@@ -16,7 +16,6 @@ const PromptCard = ({ prompts, promptTitle, handlePromptTitleChange, updatePromp
           Authorization: `Bearer ${token}`,
         },
       })
-
       getHistory()
     } catch (error) {
       console.error('Error deleting code:', error)

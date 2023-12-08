@@ -73,9 +73,8 @@ const deletePrompt = async (req, res) => {
     const promptId = req.params.promptId
     try {
         const prompt = await OpenAIModel.findById(promptId)
-        console.log('woooooooooooooooooooooooooooo', prompt)
         await prompt.remove()
-        res.status(200).json({ message: 'Code deleted successfully' })
+        res.status(200).json({ message: 'Prompt deleted successfully' })
     } catch (error) {
         console.error('Error deleting prompt:', error)
     }
