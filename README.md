@@ -44,19 +44,19 @@ Prior to this, the useage of APIs was deliberately avoided for the fear of the u
 ![Zoom](https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=zoom&logoColor=white)
 
 ## APP WALK-THROUGH
-![SIGN-UP](<Screenshot 2023-12-07 at 9.28.26 PM.png>)
-![LOG-IN](<Screenshot 2023-12-07 at 9.29.12 PM.png>)
-![CODE-PAGE](<Screenshot 2023-12-07 at 9.30.26 PM.png>)
-![CODE-SOLUTION](<Screenshot 2023-12-07 at 9.31.19 PM.png>)
-![CODE-HISTORY](<Screenshot 2023-12-07 at 9.32.19 PM.png>)
-![NAV-BAR](<Screenshot 2023-12-07 at 9.33.04 PM.png>)
-![PROMPT-PAGE](<Screenshot 2023-12-07 at 9.33.31 PM.png>)
-![PROMPT-SOLUTION](<Screenshot 2023-12-07 at 9.37.26 PM.png>)
-![PROMPT-HISTORY](<Screenshot 2023-12-07 at 9.38.15 PM.png>)
-![MATH-PAGE](<Screenshot 2023-12-07 at 9.38.45 PM.png>)
-![MATH-SOLUTION](<Screenshot 2023-12-07 at 9.41.14 PM.png>)
-![MATH-HISTORY](<Screenshot 2023-12-07 at 9.42.03 PM.png>)
-![DONATION-PAGE](<Screenshot 2023-12-07 at 9.43.13 PM.png>)
+![SIGN-UP](<screenshots/Screenshot 2023-12-07 at 9.28.26 PM.png>)
+![LOG-IN](<screenshots/Screenshot 2023-12-07 at 9.29.12 PM.png>)
+![CODE-PAGE](<screenshots/Screenshot 2023-12-07 at 9.30.26 PM.png>)
+![CODE-SOLUTION](<screenshots/Screenshot 2023-12-07 at 9.31.19 PM.png>)
+![CODE-HISTORY](<screenshots/Screenshot 2023-12-07 at 9.32.19 PM.png>)
+![NAV-BAR](<screenshots/Screenshot 2023-12-07 at 9.33.04 PM.png>)
+![PROMPT-PAGE](<screenshots/Screenshot 2023-12-07 at 9.33.31 PM.png>)
+![PROMPT-SOLUTION](<screenshots/Screenshot 2023-12-07 at 9.37.26 PM.png>)
+![PROMPT-HISTORY](<screenshots/Screenshot 2023-12-07 at 9.38.15 PM.png>)
+![MATH-PAGE](<screenshots/Screenshot 2023-12-07 at 9.38.45 PM.png>)
+![MATH-SOLUTION](<screenshots/Screenshot 2023-12-07 at 9.41.14 PM.png>)
+![MATH-HISTORY](<screenshots/Screenshot 2023-12-07 at 9.42.03 PM.png>)
+![DONATION-PAGE](<screenshots/Screenshot 2023-12-07 at 9.43.13 PM.png>)
 
 ## NEXT STEPS
 * Refactor more code to improve readability
