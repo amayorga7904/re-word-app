@@ -39,7 +39,6 @@ const codeHistory = async(req, res) => {
     try {
         const codeUserId = req.user._id
         const codes = await CodeOpenAIModel.find({ user: codeUserId }).sort({ timestamp: -1 })
-        console.log('evan is the awesomest', codes)
         res.status(200).json(codes)
     } catch (error) {
         console.error('Error getting codes:', error)

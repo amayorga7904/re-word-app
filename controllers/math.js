@@ -39,7 +39,6 @@ const mathHistory = async(req, res) => {
     try {
         const mathUserId = req.user._id
         const maths = await MathOpenAIModel.find({ user: mathUserId }).sort({ timestamp: -1 })
-        console.log('evan is the awesomest', maths)
         res.status(200).json(maths)
     } catch (error) {
         console.error('Error getting maths:', error)
