@@ -69,3 +69,5 @@ Prior to this, the useage of APIs was deliberately avoided for the fear of the u
 
 * Reset text area in each page to remove text for better UI
 
+* Fix title change bug
+
