@@ -1,14 +1,18 @@
-const express = require('express')
-const router = express.Router()
-const mathCtrl = require('../controllers/math')
-const ensureLoggedIn = require('../config/ensureLoggedIn')
-//localhost:3000/api/codes
-router.post('/', ensureLoggedIn, mathCtrl.explainMath)
-//localhost:3000/api/codes/history
-router.get('/history/:id', ensureLoggedIn, mathCtrl.mathHistory)
+const express = require('express');
+const router = express.Router();
+const mathCtrl = require('../controllers/math');
+const ensureLoggedIn = require('../config/ensureLoggedIn');
 
-router.put('/history/:userId/:mathId', ensureLoggedIn, mathCtrl.updateMathTitle)
+// POST /api/codes
+router.post('/', ensureLoggedIn, mathCtrl.explainMath);
 
-router.delete('/history/:userId/:mathId', ensureLoggedIn, mathCtrl.delete)
+// GET /api/codes/history/:id
+router.get('/history/:id', ensureLoggedIn, mathCtrl.mathHistory);
 
-module.exports = router
+// PUT /api/codes/history/:userId/:mathId
+router.put('/history/:userId/:mathId', ensureLoggedIn, mathCtrl.updateMathTitle);
+
+// DELETE /api/codes/history/:userId/:mathId
+router.delete('/history/:userId/:mathId', ensureLoggedIn, mathCtrl.delete);
+
+module.exports = router;
