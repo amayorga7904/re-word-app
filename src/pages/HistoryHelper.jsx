@@ -15,11 +15,14 @@ const styles = {
     padding: '3rem'
   }
 }
-
+  // Ref to access the DOM element
   const ref = useRef()
+
+  // State variables to manage expand/collapse functionality
   const [shouldShowExpand, setShouldShowExpand] = useState(false)
   const [expanded, setExpanded] = useState(true)
 
+  // Effect to check if content exceeds the maxHeight and set initial states accordingly
   useEffect(() => {
     if (ref.current.scrollHeight > maxHeight) {
       setShouldShowExpand(true)

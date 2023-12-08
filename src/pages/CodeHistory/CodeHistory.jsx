@@ -7,28 +7,30 @@ import axios from 'axios'
 
 const CODE_HISTORY_API_URL = '/api/codes/history'
 
-
 const CodeHistory = () => {
+  // State to manage the list of codes and the title for updating
   const [codes, setCodes] = useState([])
   const [title, setTitle] = useState('')
 
+  // Function to fetch code history from the server
   const getCodeHistory = async () => {
     try {
       const currentCoder = getUser()
       if (currentCoder) {
         const codeToken = getToken()
-        const reply = await axios.get(`${CODE_HISTORY_API_URL}/${currentCoder._id}`,  {
+        const reply = await axios.get(`${CODE_HISTORY_API_URL}/${currentCoder._id}`, {
           headers: {
             Authorization: `Bearer ${codeToken}`,
-          }
+          },
         })
         setCodes(reply.data)
-      } 
+      }
     } catch (error) {
       console.log('Error fetching codes:', error)
     }
   }
 
+  // Function to update the title of a code entry
   const updateCodeTitle = async (codeId) => {
     try {
       const currentCoder = getUser()
@@ -50,6 +52,7 @@ const CodeHistory = () => {
     }
   }
 
+  // Event handler for title input change
   const handleTitleChange = (e) => {
     setTitle(e.target.value.toUpperCase())
   }
@@ -58,8 +61,8 @@ const CodeHistory = () => {
     <Container className="code-history-page">
       <Row>
         <Col>
-          <Button 
-            variant='dark' 
+          <Button
+            variant='dark'
             onClick={getCodeHistory}
           >
             Get History
@@ -68,11 +71,11 @@ const CodeHistory = () => {
         <br />
         <br />
       </Row>
-      <CodeCard 
-        codes={codes} 
-        title={title} 
-        updateCodeTitle={updateCodeTitle} 
-        handleTitleChange={handleTitleChange} 
+      <CodeCard
+        codes={codes}
+        title={title}
+        updateCodeTitle={updateCodeTitle}
+        handleTitleChange={handleTitleChange}
         getCodeHistory={getCodeHistory}
       />
       <br />
@@ -80,6 +83,5 @@ const CodeHistory = () => {
     </Container>
   )
 }
-
 
 export default CodeHistory

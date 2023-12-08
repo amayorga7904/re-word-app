@@ -1,33 +1,23 @@
-import { Button, Form } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 
 // MathForm component for handling math input form
-const MathForm = ({ handleMath, handleSubmit, math }) => {
-    
+const MathLoader = ({ loadingSpot, outputContent }) => {
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group
-        className='mb-6'
-        controlId='exampleForm.ControlTextarea1'
-        value={math}
-        onChange={handleMath}
-      >
-        <Form.Label>Enter Math Equation Below</Form.Label>
-        <Form.Control 
-          className='text-area' 
-          as='textarea' 
-          rows={6} 
-        />
-      </Form.Group>
-      <Button 
-        variant='dark'
-        type='submit'
-      >
-        Submit
-      </Button>
-      <br />
-      <br />
-    </Form>
+    <div>
+        <h3>Become an Expert in Solving Math Problems!</h3>
+        <h6>Get Your Problems Solved!</h6>
+        <br />
+        <p>
+          {
+            loadingSpot ? 
+            <Spinner 
+            animation="grow" 
+            /> : 
+            outputContent || '(ό‿ὸ)ﾉ' 
+          }
+        </p>
+    </div>
   )
 }
 
-export default MathForm
+export default MathLoader
