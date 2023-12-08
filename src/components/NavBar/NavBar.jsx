@@ -41,6 +41,7 @@ const NavBar = ({ user, setUser }) => {
               <Nav.Link href='/api/codes'>New Code</Nav.Link>
               <Nav.Link href='/api/math'>New Math Equation</Nav.Link>
               <Nav.Link href='' onClick={handleLogOut}>Log Out</Nav.Link>
+              <Nav.Link href='https://buy.stripe.com/test_fZe00sbg94T12rudQR'>Donate</Nav.Link>
             </Nav>
           </Offcanvas.Body>
           </Navbar.Offcanvas>

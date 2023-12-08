@@ -4,7 +4,7 @@ const MathLoader = ({ loadingSpot, outputContent }) => {
   return (
     <div>
         <h3>Become an Expert in Solving Math Problems!</h3>
-        <h6>Ask me How!</h6>
+        <h6>Get Your Problems Solved!</h6>
         <br />
         <p>
           {
