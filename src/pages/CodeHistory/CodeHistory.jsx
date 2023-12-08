@@ -16,7 +16,7 @@ const CodeHistory = () => {
     try {
       const currentCoder = getUser()
       if (currentCoder) {
-        const codeToken = await getToken()
+        const codeToken = getToken()
         const reply = await axios.get(`${CODE_HISTORY_API_URL}/${currentCoder._id}`,  {
           headers: {
             Authorization: `Bearer ${codeToken}`,

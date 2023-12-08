@@ -15,7 +15,7 @@ const MathHistory = () => {
     try {
       const currentMather = getUser()
       if (currentMather) {
-        const mathToken = await getToken()
+        const mathToken = getToken()
         const output = await axios.get(`${MATH_HISTORY_API_URL}/${currentMather._id}`,  {
           headers: {
             Authorization: `Bearer ${mathToken}`,

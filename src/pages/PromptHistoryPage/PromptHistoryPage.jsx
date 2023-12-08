@@ -16,7 +16,7 @@ const PromptHistoryPage = () => {
     try {
         const currentUser = getUser()
         if (currentUser) {
-            const token = await getToken()
+            const token = getToken()
             const response = await axios.get(`${HISTORY_API_URL}/${currentUser._id}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
