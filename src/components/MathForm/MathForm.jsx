@@ -1,6 +1,7 @@
 import { Button, Form } from 'react-bootstrap'
 
-const MathForm = ({ handleMath, handleSubmit, math}) => {
+// MathForm component for handling math input form
+const MathForm = ({ handleMath, handleSubmit, math }) => {
     
   return (
     <Form onSubmit={handleSubmit}>
@@ -17,12 +18,12 @@ const MathForm = ({ handleMath, handleSubmit, math}) => {
           rows={6} 
         />
       </Form.Group>
-        <Button 
-          variant='dark'
-          type='submit'
-        >
-          Submit
-        </Button>
+      <Button 
+        variant='dark'
+        type='submit'
+      >
+        Submit
+      </Button>
       <br />
       <br />
     </Form>
