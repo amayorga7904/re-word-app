@@ -75,6 +75,7 @@ const PromptHistoryPage = () => {
         promptTitle={promptTitle} 
         handlePromptTitleChange={handlePromptTitleChange} 
         updatePromptTitle={updatePromptTitle} 
+        getHistory={getHistory}
       />
       <br />
       <br />

@@ -77,6 +77,7 @@ const MathHistory = () => {
         mathTitle={mathTitle} 
         handleMathTitleChange={handleMathTitleChange} 
         updateMathTitle={updateMathTitle} 
+        getMathHistory={getMathHistory}
       />
       <br />
       <br />

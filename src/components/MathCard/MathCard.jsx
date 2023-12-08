@@ -1,7 +1,36 @@
 import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
 import { ExpendableText } from '../../pages/HistoryHelper'
+import { getUser, getToken } from '../../utilities/users-service'
+import axios from 'axios'
 
-const MathCard = ({ maths, mathTitle, handleMathTitleChange, updateMathTitle }) => {
+const MATH_HISTORY_API_URL = '/api/math/history'
+
+const MathCard = ({ maths, mathTitle, handleMathTitleChange, updateMathTitle, getMathHistory }) => {
+
+  const handleDelete = async (mathId) => {
+    try {
+      console.log('Deleting math with ID:', mathId);
+  
+      const currentMather = getUser();
+      console.log('Current Mather:', currentMather);
+  
+      const mathToken = getToken();
+      console.log('Math Token:', mathToken);
+  
+      await axios.delete(`${MATH_HISTORY_API_URL}/${currentMather._id}/${mathId}`, {
+        headers: {
+          Authorization: `Bearer ${mathToken}`,
+        },
+      });
+
+  
+      getMathHistory();
+    } catch (error) {
+      console.error('Error deleting math:', error);
+    }
+  };
+  
+
   return (
       <CardGroup>
         <Card>
@@ -40,6 +69,13 @@ const MathCard = ({ maths, mathTitle, handleMathTitleChange, updateMathTitle }) 
                           <strong>Explanation:</strong> {math.output}<br />
                         </ExpendableText>
                         <em>Date: {new Date(math.timestamp).toLocaleString()}</em>
+                        <br />
+                        <Button
+                          variant='dark'
+                          onClick={() => handleDelete(math._id)}
+                        >
+                          Delete
+                        </Button>
                         <p>________________________</p>
                       </li>
                     </Card.Body>

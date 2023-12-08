@@ -64,15 +64,28 @@ const updatePromptTitle = async(req, res) => {
         await prompt.save()
         res.status(200).json({ message: 'Title updated successfully' })
     } catch (error) {
-        console.error('Error updating code title:', error)
+        console.error('Error updating prompt title:', error)
     }
 }
 
 
+const deletePrompt = async (req, res) => {
+    const promptId = req.params.promptId
+    try {
+        const prompt = await OpenAIModel.findById(promptId)
+        console.log('woooooooooooooooooooooooooooo', prompt)
+        await prompt.remove()
+        res.status(200).json({ message: 'Code deleted successfully' })
+    } catch (error) {
+        console.error('Error deleting prompt:', error)
+    }
+}
+
 module.exports = {
     main, 
     history,
-    updatePromptTitle
+    updatePromptTitle,
+    delete: deletePrompt
 }
 
 

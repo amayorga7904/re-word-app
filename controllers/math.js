@@ -71,8 +71,27 @@ const updateMathTitle = async(req, res) => {
 }
 
 
+const deleteMath = async (req, res) => {
+    const mathId = req.params.mathId;
+    try {
+      const math = await MathOpenAIModel.findById(mathId);
+      if (!math) {
+        return res.status(404).json({ error: 'Math not found' });
+      }
+  
+      await math.remove();
+      res.status(200).json({ message: 'Math deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting math:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
+
+
 module.exports = {
     explainMath, 
     mathHistory,
-    updateMathTitle
+    updateMathTitle,
+    delete: deleteMath
 }

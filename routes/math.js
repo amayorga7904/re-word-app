@@ -9,4 +9,6 @@ router.get('/history/:id', ensureLoggedIn, mathCtrl.mathHistory)
 
 router.put('/history/:userId/:mathId', ensureLoggedIn, mathCtrl.updateMathTitle)
 
+router.delete('/history/:userId/:mathId', ensureLoggedIn, mathCtrl.delete)
+
 module.exports = router

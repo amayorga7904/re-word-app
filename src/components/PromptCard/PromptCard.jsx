@@ -1,7 +1,28 @@
 import { CardGroup, Card, Row, Col, Button } from 'react-bootstrap'
 import { ExpendableText } from '../../pages/HistoryHelper'
+import { getUser, getToken } from '../../utilities/users-service' 
+import axios from 'axios'
 
-const PromptCard = ({ prompts, promptTitle, handlePromptTitleChange, updatePromptTitle }) => {
+const HISTORY_API_URL = '/api/openAi/history'
+
+const PromptCard = ({ prompts, promptTitle, handlePromptTitleChange, updatePromptTitle, getHistory }) => {
+
+  const handleDelete = async (promptId) => {
+    try {
+      const currentUser = getUser()
+      const token = getToken()
+      await axios.delete(`${HISTORY_API_URL}/${currentUser._id}/${promptId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      getHistory()
+    } catch (error) {
+      console.error('Error deleting code:', error)
+    }
+  }
+
   return (
   <CardGroup>
     <Card>
@@ -39,8 +60,14 @@ const PromptCard = ({ prompts, promptTitle, handlePromptTitleChange, updatePromp
                     <ExpendableText maxHeight={95}>
                       <strong>Response:</strong> {prompt.response}<br />
                     </ExpendableText>
-                    {/* emphasize */}
                     <em>Date: {new Date(prompt.timestamp).toLocaleString()}</em>
+                    <br />
+                    <Button
+                      variant='dark'
+                      onClick={() => handleDelete(prompt._id)}
+                    >
+                      Delete
+                    </Button>
                     <p>________________________</p>
                   </li>
                 </Card.Body>
