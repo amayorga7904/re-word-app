@@ -34,7 +34,7 @@ const CodeHistory = () => {
   const updateCodeTitle = async (codeId) => {
     try {
       const currentCoder = getUser()
-      const codeToken = await getToken()
+      const codeToken = getToken()
 
       await axios.put(
         `${CODE_HISTORY_API_URL}/${currentCoder._id}/${codeId}`,
