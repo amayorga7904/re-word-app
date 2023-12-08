@@ -28,8 +28,7 @@ const explainMath = async(req, res) => {
             res.json(mathCompletion.choices[0])
         } 
     } catch (error) {
-        console.error('Error:', error)
-        res.status(500).json({ error: 'Internal Server Error' })
+        console.error(error)
     }
 }
 
@@ -40,8 +39,7 @@ const mathHistory = async(req, res) => {
         const maths = await MathOpenAIModel.find({ user: mathUserId }).sort({ timestamp: -1 })
         res.status(200).json(maths)
     } catch (error) {
-        console.error('Error getting maths:', error)
-        res.status(500).json({ error: 'Internal Server Error' })
+        console.error(error)
     }
 }
 
@@ -55,8 +53,7 @@ const updateMathTitle = async(req, res) => {
         await math.save()
         res.status(200).json({ message: 'Title updated successfully' })
     } catch (error) {
-        console.error('Error updating math title:', error)
-        res.status(500).json({ error: 'Internal server error' })
+        console.error(error)
     }
 }
 
@@ -68,7 +65,7 @@ const deleteMath = async (req, res) => {
       await math.remove()
       res.status(200).json({ message: 'Math deleted successfully' })
     } catch (error) {
-      console.error('Error deleting math:', error)
+      console.error(error)
     }
   }
   

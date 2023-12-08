@@ -28,8 +28,7 @@ const explainCode = async(req, res) => {
             res.json(codeCompletion.choices[0])
         } 
     } catch (error) {
-        console.error('Error:', error)
-        res.status(500).json({ error: 'Internal Server Error' })
+        console.error(error)
     }
 }
 
@@ -40,8 +39,7 @@ const codeHistory = async(req, res) => {
         const codes = await CodeOpenAIModel.find({ user: codeUserId }).sort({ timestamp: -1 })
         res.status(200).json(codes)
     } catch (error) {
-        console.error('Error getting codes:', error)
-        res.status(500).json({ error: 'Internal Server Error' })
+        console.error(error)
     }
 }
 
@@ -55,8 +53,7 @@ const updateTitle = async(req, res) => {
         await code.save()
         res.status(200).json({ message: 'Title updated successfully' })
       } catch (error) {
-        console.error('Error updating code title:', error)
-        res.status(500).json({ error: 'Internal server error' })
+        console.error(error)
       }
     }
 
@@ -68,7 +65,7 @@ const updateTitle = async(req, res) => {
             await code.remove()
             res.status(200).json({ message: 'Code deleted successfully' })
         } catch (error) {
-            console.error('Error deleting code:', error)
+            console.error(error)
         }
     }
     

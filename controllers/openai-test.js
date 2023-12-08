@@ -26,13 +26,9 @@ const main = async(req, res) => {
             const openAIRecord = new OpenAIModel({ user: req.user._id, prompt, response: responseContent })
             await openAIRecord.save()
             res.json(completion.choices[0])
-        } else {
-            console.error('Error: Unexpected response structure')
-            res.status(500).json({ error: 'Internal Server Error' })
         }
     } catch (error) {
-        console.error('Error:', error)
-        res.status(500).json({ error: 'Internal Server Error' })
+        console.error(error)
     }
 }
 
@@ -43,8 +39,7 @@ const history = async(req, res) => {
         const prompts = await OpenAIModel.find({ user: userId }).sort({ timestamp: -1 })
         res.status(200).json(prompts)
     } catch (error) {
-        console.error('Error getting prompts:', error)
-        res.status(500).json({ error: 'Internal Server Error' })
+        console.error(error)
     }
 }
 
@@ -58,7 +53,7 @@ const updatePromptTitle = async(req, res) => {
         await prompt.save()
         res.status(200).json({ message: 'Title updated successfully' })
     } catch (error) {
-        console.error('Error updating prompt title:', error)
+        console.error(error)
     }
 }
 
@@ -70,7 +65,7 @@ const deletePrompt = async (req, res) => {
         await prompt.remove()
         res.status(200).json({ message: 'Prompt deleted successfully' })
     } catch (error) {
-        console.error('Error deleting prompt:', error)
+        console.error(error)
     }
 }
 
