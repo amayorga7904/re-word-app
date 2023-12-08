@@ -5,13 +5,10 @@ const mathOpenai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 })
 
-/**
- * Handles the POST request to the '/explain-math' endpoint.
- * Takes a mathematical equation from the request body, constructs a message array,
- * and sends it to the OpenAI GPT-3.5 Turbo model for completion.
- * Saves the generated output and the original mathematical equation in the database.
- * Responds with the generated output.
- */
+
+//   Takes a mathematical equation from the request body, constructs a message array,
+//   and sends it to the OpenAI GPT-3.5 Turbo model for completion.
+//   Saves the generated output and the original mathematical equation in the database.
 const explainMath = async (req, res) => {
     const { math } = req.body
     const mathData = [{
@@ -39,11 +36,10 @@ const explainMath = async (req, res) => {
     }
 }
 
-/**
- * Handles the GET request to the '/math/history' endpoint.
- * Retrieves and returns the mathematical equation history for the authenticated user from the database,
- * sorted by timestamp in descending order.
- */
+
+//   Retrieves and returns the mathematical equation history for the authenticated user from the database,
+//   sorted by timestamp in descending order.
+
 const mathHistory = async (req, res) => {
     try {
         const mathUserId = req.user._id
@@ -54,11 +50,8 @@ const mathHistory = async (req, res) => {
     }
 }
 
-/**
- * Handles the PUT request to the '/math/:mathId/update-title' endpoint.
- * Updates the title of a specific mathematical equation entry identified by the mathId parameter.
- * Responds with a success message upon a successful title update.
- */
+
+//   Updates the title of a specific mathematical equation entry identified by the mathId parameter.
 const updateMathTitle = async (req, res) => {
     try {
         const mathId = req.params.mathId
@@ -72,11 +65,9 @@ const updateMathTitle = async (req, res) => {
     }
 }
 
-/**
- * Handles the DELETE request to the '/math/:mathId/delete' endpoint.
- * Deletes a specific mathematical equation entry identified by the mathId parameter from the database.
- * Responds with a success message upon a successful deletion.
- */
+
+//  Deletes a specific mathematical equation entry identified by the 
+//mathId parameter from the database.
 const deleteMath = async (req, res) => {
     const mathId = req.params.mathId
     try {

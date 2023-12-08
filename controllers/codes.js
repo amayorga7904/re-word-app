@@ -5,13 +5,10 @@ const codeOpenai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 })
 
-/**
- * Handles the POST request to the '/explain-code' endpoint.
- * Takes a piece of code from the request body, constructs a message array,
- * and sends it to the OpenAI GPT-3.5 Turbo model for completion.
- * Saves the generated explanation and the original code in the database.
- * Responds with the generated explanation.
- */
+
+//  Takes a piece of code from the request body, constructs a message array,
+//  and sends it to the OpenAI GPT-3.5 Turbo model for completion.
+//  Saves the generated explanation and the original code in the database.
 const explainCode = async (req, res) => {
     const { code } = req.body
     const codeData = [{
@@ -39,11 +36,9 @@ const explainCode = async (req, res) => {
     }
 }
 
-/**
- * Handles the GET request to the '/code/history' endpoint.
- * Retrieves and returns the code history for the authenticated user from the database,
- * sorted by timestamp in descending order.
- */
+
+//   Retrieves and returns the code history for the authenticated user from the database,
+//   sorted by timestamp in descending order.
 const codeHistory = async (req, res) => {
     try {
         const codeUserId = req.user._id
@@ -54,11 +49,8 @@ const codeHistory = async (req, res) => {
     }
 }
 
-/**
- * Handles the PUT request to the '/code/:codeId/update-title' endpoint.
- * Updates the title of a specific code entry identified by the codeId parameter.
- * Responds with a success message upon a successful title update.
- */
+
+// Updates the title of a specific code entry identified by the codeId parameter.
 const updateTitle = async (req, res) => {
     try {
         const codeId = req.params.codeId
@@ -72,11 +64,8 @@ const updateTitle = async (req, res) => {
     }
 }
 
-/**
- * Handles the DELETE request to the '/code/:codeId/delete' endpoint.
- * Deletes a specific code entry identified by the codeId parameter from the database.
- * Responds with a success message upon a successful deletion.
- */
+
+//   Deletes a specific code entry identified by the codeId parameter from the database.
 const deleteCode = async (req, res) => {
     const codeId = req.params.codeId
     try {

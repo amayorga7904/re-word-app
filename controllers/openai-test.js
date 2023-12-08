@@ -5,13 +5,11 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 })
 
-/**
- * Handles the POST request to the '/main' endpoint.
- * Takes a prompt from the request body, constructs a message array,
- * and sends it to the OpenAI GPT-3.5 Turbo model for completion.
- * Saves the generated response and the original prompt in the database.
- * Responds with the generated response.
- */
+
+//   Takes a prompt from the request body, constructs a message array,
+//   and sends it to the OpenAI GPT-3.5 Turbo model for completion.
+//   Saves the generated response and the original prompt in the database.
+//   Responds with the generated response.
 const main = async (req, res) => {
     const { prompt } = req.body
     const promptData = [{
@@ -39,11 +37,9 @@ const main = async (req, res) => {
     }
 }
 
-/**
- * Handles the GET request to the '/history' endpoint.
- * Retrieves and returns the prompt history for the authenticated user from the database,
- * sorted by timestamp in descending order.
- */
+
+// Retrieves and returns the prompt history for the authenticated user from the database,
+// sorted by timestamp in descending order.
 const history = async (req, res) => {
     try {
         const userId = req.user._id
@@ -54,11 +50,9 @@ const history = async (req, res) => {
     }
 }
 
-/**
- * Handles the PUT request to the '/update-prompt-title/:promptId' endpoint.
- * Updates the title of a specific prompt entry identified by the promptId parameter.
- * Responds with a success message upon a successful title update.
- */
+
+//  Updates the title of a specific prompt entry identified by the promptId parameter.
+//  Responds with a success message upon a successful title update.
 const updatePromptTitle = async (req, res) => {
     try {
         const promptId = req.params.promptId
@@ -72,11 +66,9 @@ const updatePromptTitle = async (req, res) => {
     }
 }
 
-/**
- * Handles the DELETE request to the '/delete/:promptId' endpoint.
- * Deletes a specific prompt entry identified by the promptId parameter from the database.
- * Responds with a success message upon a successful deletion.
- */
+
+//  Deletes a specific prompt entry identified by the promptId parameter from the database.
+//  Responds with a success message upon a successful deletion.
 const deletePrompt = async (req, res) => {
     const promptId = req.params.promptId
     try {
